@@ -1,12 +1,12 @@
 import "./App.css";
 import WhoopsiesHeader from "./components/UI/WhoopsiesHeader";
-import BoardView from "./components/Views/BoardView";
+import Dashboard from "./components/Views/Pages/Dashboard";
 
 function App() {
   return (
     <>
       <WhoopsiesHeader />
-      <BoardView />
+      <Dashboard />
     </>
   );
 }
