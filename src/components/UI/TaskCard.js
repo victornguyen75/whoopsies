@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function TaskCard({ id, name, priority, release }) {
+export default function TaskCard({ name, priority, release }) {
   return (
-    <div key={id}>
+    <div>
       {"Name: "}
       {name}
       <br />
@@ -17,14 +17,12 @@ export default function TaskCard({ id, name, priority, release }) {
 }
 
 TaskCard.propTypes = {
-  id: PropTypes.number,
   name: PropTypes.string,
   priority: PropTypes.number,
   release: PropTypes.string,
 };
 
 TaskCard.defaultProps = {
-  id: 1 + Math.random(),
   name: "TBD",
   priority: Math.floor(1 + Math.random()),
   release: "TBD",
