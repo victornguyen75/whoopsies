@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 export default function TaskCreation() {
+  const textStyles = { marginRight: "1em" };
+
   return (
     <form>
       <div>
@@ -10,19 +12,19 @@ export default function TaskCreation() {
           label="Name"
           variant="filled"
           size="small"
-          style={{ marginRight: "1em" }}
+          style={textStyles}
         />
         <TextField
           label="Priority"
           variant="filled"
           size="small"
-          style={{ marginRight: "1em" }}
+          style={textStyles}
         />
         <TextField
           label="Release"
           variant="filled"
           size="small"
-          style={{ marginRight: "1em" }}
+          style={textStyles}
         />
         <Button variant="contained" color="primary" type="button" size="large">
           Create

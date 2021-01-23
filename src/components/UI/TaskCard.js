@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Card from "@material-ui/core/Card";
 
 export default function TaskCard({ name, priority, release }) {
+  const cardStyles = { margin: "5px 0px" };
+
   return (
-    <div>
+    <Card variant="outlined" style={cardStyles}>
       {"Name: "}
       {name}
       <br />
@@ -12,7 +15,7 @@ export default function TaskCard({ name, priority, release }) {
       <br />
       {"Release Date: "}
       {release}
-    </div>
+    </Card>
   );
 }
 
