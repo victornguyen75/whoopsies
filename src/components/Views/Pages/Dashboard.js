@@ -30,6 +30,7 @@ export default function Dashboard() {
   const IN_DEVELOPMENT_HEADER = "IN DEVELOPMENT";
   const IN_TESTING_HEADER = "IN TESTING";
   const DONE_HEADER = "DONE";
+  const gridStyles = { margin: "0px" };
 
   return (
     <>
@@ -40,6 +41,7 @@ export default function Dashboard() {
         justify="center"
         alignItems="flex-start"
         spacing={5}
+        style={gridStyles}
       >
         <Grid key="0" item>
           <TaskList header={TO_DO_HEADER} tasks={tasks} />
