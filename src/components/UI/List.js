@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import TaskCard from "./TaskCard";
 
 export default function List({ header, tasks }) {
+  const fullHeader = `${header} (${tasks.length})`;
+
   return (
     <>
-      <h2>{header}</h2>
+      <h2>{fullHeader}</h2>
       {tasks.map((task) => (
         <TaskCard
           key={task.id}
