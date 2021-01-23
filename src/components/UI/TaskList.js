@@ -2,12 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import TaskCard from "./TaskCard";
 
-export default function List({ header, tasks }) {
+export default function TaskList({ header, tasks }) {
   const fullHeader = `${header} (${tasks.length})`;
+  const listStyles = {
+    borderRadius: "4px",
+    backgroundColor: "lightgray",
+    padding: "1px 5px 1px 5px",
+  };
 
   return (
-    <>
-      <h2>{fullHeader}</h2>
+    <div style={listStyles}>
+      <b>{fullHeader}</b>
       {tasks.map((task) => (
         <TaskCard
           key={task.id}
@@ -16,16 +21,16 @@ export default function List({ header, tasks }) {
           release={task.release}
         />
       ))}
-    </>
+    </div>
   );
 }
 
-List.propTypes = {
+TaskList.propTypes = {
   header: PropTypes.string,
   tasks: PropTypes.arrayOf(PropTypes.object),
 };
 
-List.defaultProps = {
+TaskList.defaultProps = {
   header: "TITLE NEEDED",
   tasks: [
     {
