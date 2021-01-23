@@ -20,14 +20,14 @@ export default function List({ header, tasks }) {
 
 List.propTypes = {
   header: PropTypes.string,
-  tasks: PropTypes.objectOf(PropTypes.object),
+  tasks: PropTypes.arrayOf(PropTypes.object),
 };
 
 List.defaultProps = {
   header: "TITLE NEEDED",
   tasks: [
     {
-      id: undefined,
+      id: 1 + Math.random(),
       name: undefined,
       priority: undefined,
       release: undefined,
