@@ -1,13 +1,13 @@
 import "./App.css";
 import WhoopsiesHeader from "./components/UI/WhoopsiesHeader";
 import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewModel";
-import DashboardPageController from "./components/Controllers/DashboardPageController";
+import DashboardPageView from "./components/Views/DashboardPageView";
 
 function App() {
   return (
     <>
       <WhoopsiesHeader />
-      <DashboardPageController viewModel={DashboardPageViewModel()} />
+      <DashboardPageView viewModel={DashboardPageViewModel()} />
     </>
   );
 }

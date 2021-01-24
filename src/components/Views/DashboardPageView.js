@@ -4,16 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import TaskCreation from "../UI/TaskCreation";
 import TaskList from "../UI/TaskList";
 
-export default function DashboardPageView({
-  name,
-  setName,
-  priority,
-  setPriority,
-  release,
-  setRelease,
-  tasks,
-  addTask,
-}) {
+export default function DashboardPageView({ viewModel }) {
   const gridStyles = { margin: "0px" };
   const HEADERS = {
     TO_DO_HEADER: "TO DO",
@@ -26,13 +17,13 @@ export default function DashboardPageView({
   return (
     <>
       <TaskCreation
-        name={name}
-        setName={setName}
-        priority={priority}
-        setPriority={setPriority}
-        release={release}
-        setRelease={setRelease}
-        addTask={addTask}
+        name={viewModel.name}
+        setName={viewModel.setName}
+        priority={viewModel.priority}
+        setPriority={viewModel.setPriority}
+        release={viewModel.release}
+        setRelease={viewModel.setRelease}
+        addTask={viewModel.addTask}
       />
       <Grid
         container
@@ -43,7 +34,7 @@ export default function DashboardPageView({
         style={gridStyles}
       >
         <Grid key="0" item>
-          <TaskList header={HEADERS.TO_DO_HEADER} tasks={tasks} />
+          <TaskList header={HEADERS.TO_DO_HEADER} tasks={viewModel.tasks} />
         </Grid>
         <Grid key="1" item>
           <TaskList header={HEADERS.IN_ANALYSIS_HEADER} />
@@ -63,30 +54,34 @@ export default function DashboardPageView({
 }
 
 DashboardPageView.propTypes = {
-  name: PropTypes.string,
-  setName: PropTypes.func,
-  priority: PropTypes.string,
-  setPriority: PropTypes.func,
-  release: PropTypes.string,
-  setRelease: PropTypes.func,
-  tasks: PropTypes.arrayOf(PropTypes.object),
-  addTask: PropTypes.func,
+  viewModel: PropTypes.shape({
+    name: PropTypes.string,
+    setName: PropTypes.func,
+    priority: PropTypes.string,
+    setPriority: PropTypes.func,
+    release: PropTypes.string,
+    setRelease: PropTypes.func,
+    tasks: PropTypes.arrayOf(PropTypes.object),
+    addTask: PropTypes.func,
+  }),
 };
 
 DashboardPageView.defaultProps = {
-  name: "TBD",
-  setName: () => {},
-  priority: "",
-  setPriority: () => {},
-  release: "TBD",
-  setRelease: () => {},
-  tasks: [
-    {
-      id: 1 + Math.random(),
-      name: "TBD",
-      priority: "",
-      release: "TBD",
-    },
-  ],
-  addTask: () => {},
+  viewModel: {
+    name: "TBD",
+    setName: () => {},
+    priority: "",
+    setPriority: () => {},
+    release: "TBD",
+    setRelease: () => {},
+    tasks: [
+      {
+        id: 1 + Math.random(),
+        name: "TBD",
+        priority: "",
+        release: "TBD",
+      },
+    ],
+    addTask: () => {},
+  },
 };
