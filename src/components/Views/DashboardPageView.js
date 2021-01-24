@@ -5,7 +5,6 @@ import TaskCreation from "../UI/TaskCreation";
 import TaskList from "../UI/TaskList";
 
 export default function DashboardPageView({
-  viewModel,
   name,
   setName,
   priority,
@@ -16,6 +15,13 @@ export default function DashboardPageView({
   addTask,
 }) {
   const gridStyles = { margin: "0px" };
+  const HEADERS = {
+    TO_DO_HEADER: "TO DO",
+    IN_ANALYSIS_HEADER: "IN ANALYSIS",
+    IN_DEVELOPMENT_HEADER: "IN DEVELOPMENT",
+    IN_TESTING_HEADER: "IN TESTING",
+    DONE_HEADER: "DONE",
+  };
 
   return (
     <>
@@ -37,19 +43,19 @@ export default function DashboardPageView({
         style={gridStyles}
       >
         <Grid key="0" item>
-          <TaskList header={viewModel.TO_DO_HEADER} tasks={tasks} />
+          <TaskList header={HEADERS.TO_DO_HEADER} tasks={tasks} />
         </Grid>
         <Grid key="1" item>
-          <TaskList header={viewModel.IN_ANALYSIS_HEADER} />
+          <TaskList header={HEADERS.IN_ANALYSIS_HEADER} />
         </Grid>
         <Grid key="2" item>
-          <TaskList header={viewModel.IN_DEVELOPMENT_HEADER} />
+          <TaskList header={HEADERS.IN_DEVELOPMENT_HEADER} />
         </Grid>
         <Grid key="3" item>
-          <TaskList header={viewModel.IN_TESTING_HEADER} />
+          <TaskList header={HEADERS.IN_TESTING_HEADER} />
         </Grid>
         <Grid key="4" item>
-          <TaskList header={viewModel.DONE_HEADER} />
+          <TaskList header={HEADERS.DONE_HEADER} />
         </Grid>
       </Grid>
     </>
@@ -57,7 +63,6 @@ export default function DashboardPageView({
 }
 
 DashboardPageView.propTypes = {
-  viewModel: PropTypes.objectOf(PropTypes.string),
   name: PropTypes.string,
   setName: PropTypes.func,
   priority: PropTypes.string,
@@ -69,7 +74,6 @@ DashboardPageView.propTypes = {
 };
 
 DashboardPageView.defaultProps = {
-  viewModel: {},
   name: "TBD",
   setName: () => {},
   priority: "",

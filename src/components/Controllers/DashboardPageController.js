@@ -2,14 +2,6 @@ import React, { useState } from "react";
 import DashboardPageView from "../Views/DashboardPageView";
 
 export default function DashboardPageController() {
-  const viewModel = {
-    TO_DO_HEADER: "TO DO",
-    IN_ANALYSIS_HEADER: "IN ANALYSIS",
-    IN_DEVELOPMENT_HEADER: "IN DEVELOPMENT",
-    IN_TESTING_HEADER: "IN TESTING",
-    DONE_HEADER: "DONE",
-  };
-
   const [name, setName] = useState("");
   const [priority, setPriority] = useState("");
   const [release, setRelease] = useState("");
@@ -42,7 +34,6 @@ export default function DashboardPageController() {
 
   return (
     <DashboardPageView
-      viewModel={viewModel}
       name={name}
       setName={setName}
       priority={priority}
