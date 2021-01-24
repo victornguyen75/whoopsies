@@ -1,47 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import DashboardPageView from "../Views/DashboardPageView";
 
-export default function DashboardPageController() {
-  const [name, setName] = useState("");
-  const [priority, setPriority] = useState("");
-  const [release, setRelease] = useState("");
-  const [tasks, setTasks] = useState([
-    {
-      id: 1 + Math.random(),
-      name: "dummy task 1",
-      priority: Math.floor(100 * Math.random()).toString(),
-      release: "12/12/2021",
-    },
-  ]);
-
-  const addTask = (e) => {
-    e.preventDefault();
-
-    const newList = [...tasks];
-
-    newList.push({
-      id: 1 + Math.random(),
-      name,
-      priority,
-      release,
-    });
-
-    setTasks(newList);
-    setName("");
-    setPriority("");
-    setRelease("");
-  };
-
+export default function DashboardPageController({ viewModel }) {
   return (
     <DashboardPageView
-      name={name}
-      setName={setName}
-      priority={priority}
-      setPriority={setPriority}
-      release={release}
-      setRelease={setRelease}
-      tasks={tasks}
-      addTask={addTask}
+      name={viewModel.name}
+      setName={viewModel.setName}
+      priority={viewModel.priority}
+      setPriority={viewModel.setPriority}
+      release={viewModel.release}
+      setRelease={viewModel.setRelease}
+      tasks={viewModel.tasks}
+      addTask={viewModel.addTask}
     />
   );
 }
+
+DashboardPageController.propTypes = {
+  viewModel: PropTypes.shape({
+    name: PropTypes.string,
+    setName: PropTypes.func,
+    priority: PropTypes.string,
+    setPriority: PropTypes.func,
+    release: PropTypes.string,
+    setRelease: PropTypes.func,
+    tasks: PropTypes.arrayOf(PropTypes.object),
+    addTask: PropTypes.func,
+  }),
+};
+
+DashboardPageController.defaultProps = {
+  viewModel: {
+    name: "TBD",
+    setName: () => {},
+    priority: "",
+    setPriority: () => {},
+    release: "TBD",
+    setRelease: () => {},
+    tasks: [
+      {
+        id: 1 + Math.random(),
+        name: "TBD",
+        priority: "",
+        release: "TBD",
+      },
+    ],
+    addTask: () => {},
+  },
+};
