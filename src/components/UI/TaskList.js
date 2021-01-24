@@ -35,9 +35,9 @@ TaskList.defaultProps = {
   tasks: [
     {
       id: 1 + Math.random(),
-      name: undefined,
-      priority: undefined,
-      release: undefined,
+      name: "TBD",
+      priority: "",
+      release: "TBD",
     },
   ],
 };

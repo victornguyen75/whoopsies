@@ -21,12 +21,12 @@ export default function TaskCard({ name, priority, release }) {
 
 TaskCard.propTypes = {
   name: PropTypes.string,
-  priority: PropTypes.number,
+  priority: PropTypes.string,
   release: PropTypes.string,
 };
 
 TaskCard.defaultProps = {
   name: "TBD",
-  priority: Math.floor(1 + Math.random()),
+  priority: "",
   release: "TBD",
 };
