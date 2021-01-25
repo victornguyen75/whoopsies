@@ -6,13 +6,13 @@ import TaskList from "../UI/TaskList";
 
 export default function DashboardPageView({ viewModel }) {
   const gridStyles = { margin: "0px" };
-  const HEADERS = {
-    TO_DO_HEADER: "TO DO",
-    IN_ANALYSIS_HEADER: "IN ANALYSIS",
-    IN_DEVELOPMENT_HEADER: "IN DEVELOPMENT",
-    IN_TESTING_HEADER: "IN TESTING",
-    DONE_HEADER: "DONE",
-  };
+  const HEADERS = [
+    "TO DO",
+    "IN ANALYSIS",
+    "IN DEVELOPMENT",
+    "IN TESTING",
+    "DONE",
+  ];
 
   return (
     <>
@@ -33,21 +33,12 @@ export default function DashboardPageView({ viewModel }) {
         spacing={5}
         style={gridStyles}
       >
-        <Grid key="0" item>
-          <TaskList header={HEADERS.TO_DO_HEADER} tasks={viewModel.tasks} />
-        </Grid>
-        <Grid key="1" item>
-          <TaskList header={HEADERS.IN_ANALYSIS_HEADER} />
-        </Grid>
-        <Grid key="2" item>
-          <TaskList header={HEADERS.IN_DEVELOPMENT_HEADER} />
-        </Grid>
-        <Grid key="3" item>
-          <TaskList header={HEADERS.IN_TESTING_HEADER} />
-        </Grid>
-        <Grid key="4" item>
-          <TaskList header={HEADERS.DONE_HEADER} />
-        </Grid>
+        {HEADERS.map((header) => (
+          <Grid key={header} item>
+            {" "}
+            <TaskList header={header} tasks={viewModel.tasks} />
+          </Grid>
+        ))}
       </Grid>
     </>
   );
