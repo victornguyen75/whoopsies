@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function DashboardPageViewModel() {
+export default function useTaskCreation() {
   const [name, setName] = useState("");
   const [priority, setPriority] = useState("");
   const [release, setRelease] = useState("");
