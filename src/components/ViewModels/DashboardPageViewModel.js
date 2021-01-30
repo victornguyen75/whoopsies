@@ -1,4 +1,5 @@
 import { useState } from "react";
+import addTaskToDatabase from "../Models/DashboardPageModel";
 
 export default function useTaskCreation() {
   const [name, setName] = useState("");
@@ -26,6 +27,7 @@ export default function useTaskCreation() {
     });
 
     setTasks(newList);
+    addTaskToDatabase();
     setName("");
     setPriority("");
     setRelease("");
