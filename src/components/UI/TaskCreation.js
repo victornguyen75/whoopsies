@@ -1,52 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import FormContext from "../Providers/FormContext";
 
-export default function TaskCreation({
-  name,
-  setName,
-  priority,
-  setPriority,
-  release,
-  setRelease,
-  addTask,
-}) {
+export default function TaskCreation({ fields, handleSubmit }) {
   const textStyles = { marginRight: "1em" };
+  const handleChange = useContext(FormContext);
+  const displayFields = fields.map((field) => (
+    <TextField
+      key={field.fieldId}
+      label={field.fieldLabel}
+      variant="filled"
+      size="small"
+      value={field.fieldValue}
+      style={textStyles}
+      onChange={(event) => handleChange(field.fieldId, event)}
+    />
+  ));
 
   return (
-    <form onSubmit={addTask}>
-      <TextField
-        label="Name"
-        variant="filled"
-        size="small"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        style={textStyles}
-      />
-      <TextField
-        label="Priority"
-        variant="filled"
-        size="small"
-        value={priority}
-        onChange={(e) => setPriority(e.target.value)}
-        style={textStyles}
-      />
-      <TextField
-        label="Release"
-        variant="filled"
-        size="small"
-        value={release}
-        onChange={(e) => setRelease(e.target.value)}
-        style={textStyles}
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        size="large"
-        disabled={!name}
-      >
+    <form onSubmit={(e) => handleSubmit(e)}>
+      {displayFields}
+      <Button variant="contained" color="primary" type="submit" size="large">
         Create
       </Button>
     </form>
@@ -54,21 +30,11 @@ export default function TaskCreation({
 }
 
 TaskCreation.propTypes = {
-  name: PropTypes.string,
-  setName: PropTypes.func,
-  priority: PropTypes.string,
-  setPriority: PropTypes.func,
-  release: PropTypes.string,
-  setRelease: PropTypes.func,
-  addTask: PropTypes.func,
+  fields: PropTypes.arrayOf(PropTypes.object),
+  handleSubmit: PropTypes.func,
 };
 
 TaskCreation.defaultProps = {
-  name: "TBD",
-  setName: () => {},
-  priority: "",
-  setPriority: () => {},
-  release: "TBD",
-  setRelease: () => {},
-  addTask: () => {},
+  fields: [],
+  handleSubmit: () => {},
 };

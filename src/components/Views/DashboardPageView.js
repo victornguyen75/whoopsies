@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import TaskCreation from "../UI/TaskCreation";
 import TaskList from "../UI/TaskList";
+import FormContext from "../Providers/FormContext";
 
 export default function DashboardPageView({ viewModel }) {
   const gridStyles = { margin: "0px" };
@@ -16,15 +17,13 @@ export default function DashboardPageView({ viewModel }) {
 
   return (
     <>
-      <TaskCreation
-        name={viewModel.name}
-        setName={viewModel.setName}
-        priority={viewModel.priority}
-        setPriority={viewModel.setPriority}
-        release={viewModel.release}
-        setRelease={viewModel.setRelease}
-        addTask={viewModel.addTask}
-      />
+      <h2>{viewModel.formLabel}</h2>
+      <FormContext.Provider value={viewModel.handleChange}>
+        <TaskCreation
+          fields={viewModel.fields}
+          handleSubmit={viewModel.handleSubmit}
+        />
+      </FormContext.Provider>
       <Grid
         container
         direction="row"
@@ -46,33 +45,20 @@ export default function DashboardPageView({ viewModel }) {
 
 DashboardPageView.propTypes = {
   viewModel: PropTypes.shape({
-    name: PropTypes.string,
-    setName: PropTypes.func,
-    priority: PropTypes.string,
-    setPriority: PropTypes.func,
-    release: PropTypes.string,
-    setRelease: PropTypes.func,
+    formLabel: PropTypes.string,
+    fields: PropTypes.arrayOf(PropTypes.object),
     tasks: PropTypes.arrayOf(PropTypes.object),
-    addTask: PropTypes.func,
+    handleSubmit: PropTypes.func,
+    handleChange: PropTypes.func,
   }),
 };
 
 DashboardPageView.defaultProps = {
   viewModel: {
-    name: "TBD",
-    setName: () => {},
-    priority: "",
-    setPriority: () => {},
-    release: "TBD",
-    setRelease: () => {},
-    tasks: [
-      {
-        id: 1 + Math.random(),
-        name: "TBD",
-        priority: "",
-        release: "TBD",
-      },
-    ],
-    addTask: () => {},
+    formLabel: "",
+    fields: [],
+    tasks: [],
+    handleSubmit: () => {},
+    handleChange: () => {},
   },
 };

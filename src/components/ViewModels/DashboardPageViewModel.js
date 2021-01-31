@@ -1,46 +1,40 @@
 import { useState } from "react";
+import TaskFormFields from "./TaskFormFields";
 import addTaskToDatabase from "../Models/DashboardPageModel";
 
 export default function useTaskCreation() {
-  const [name, setName] = useState("");
-  const [priority, setPriority] = useState("");
-  const [release, setRelease] = useState("");
-  const [tasks, setTasks] = useState([
-    {
-      id: 1 + Math.random(),
-      name: "dummy task 1",
-      priority: Math.floor(100 * Math.random()).toString(),
-      release: "12/12/2021",
-    },
-  ]);
+  const [fieldElements, setFieldElements] = useState(TaskFormFields);
+  const [tasks, setTasks] = useState([]);
+  const { formLabel, fields } = fieldElements;
 
-  const addTask = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newList = [...tasks];
-
-    newList.push({
-      id: 1 + Math.random(),
-      name,
-      priority,
-      release,
+    const newTask = {};
+    fieldElements.fields.forEach((field) => {
+      Object.assign(newTask, { [field.fieldId]: field.fieldValue });
     });
 
-    setTasks(newList);
-    addTaskToDatabase();
-    setName("");
-    setPriority("");
-    setRelease("");
+    setTasks([...tasks, newTask]);
+    addTaskToDatabase(newTask);
+    setFieldElements(TaskFormFields);
+  };
+
+  const handleChange = (id, event) => {
+    const newElements = { ...fieldElements };
+    const fieldIndexToUpdate = newElements.fields.findIndex(
+      (field) => id === field.fieldId
+    );
+
+    newElements.fields[fieldIndexToUpdate].fieldValue = event.target.value;
+    setFieldElements(newElements);
   };
 
   return {
-    name,
-    setName,
-    priority,
-    setPriority,
-    release,
-    setRelease,
+    formLabel,
+    fields,
     tasks,
-    addTask,
+    handleSubmit,
+    handleChange,
   };
 }
