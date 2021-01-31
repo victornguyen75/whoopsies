@@ -32,12 +32,5 @@ TaskList.propTypes = {
 
 TaskList.defaultProps = {
   header: "TITLE NEEDED",
-  tasks: [
-    {
-      id: 1 + Math.random(),
-      name: "TBD",
-      priority: "",
-      release: "TBD",
-    },
-  ],
+  tasks: [],
 };
