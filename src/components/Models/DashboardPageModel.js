@@ -10,24 +10,26 @@ AWS.config.update({
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-export default function addTaskToDatabase() {
+export default function addTaskToDatabase(newTask) {
   const table = "Oopsies";
-  const id = 7.77;
-  const project = "Issue Tracker";
-  const name = "Example task";
-  const description = "Something something";
-  const status = "To Do";
-  const priority = "Showstopper";
-  const sprint = "1 (12/11/2021)";
-  const release = "12/12/2021";
-  const dateCreated = "";
-  const dateUpdated = "";
+  const {
+    id,
+    project,
+    name,
+    description,
+    status,
+    priority,
+    sprint,
+    release,
+    dateCreated,
+    dateUpdated,
+  } = newTask;
 
   const params = {
     TableName: table,
     Item: {
       project,
-      id,
+      id: parseInt(id, 10),
       name,
       description,
       status,
