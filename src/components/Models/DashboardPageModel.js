@@ -9,9 +9,9 @@ AWS.config.update({
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
+const table = "Oopsies-test";
 
-export default function addTaskToDatabase(newTask) {
-  const table = "Oopsies";
+function addTaskToDatabase(newTask) {
   const {
     id,
     project,
@@ -41,14 +41,27 @@ export default function addTaskToDatabase(newTask) {
     },
   };
 
-  docClient.put(params, (err) => {
-    if (err) {
-      console.error(
-        "Unable to add item. Error JSON:",
-        JSON.stringify(err, null, 2)
-      );
-    } else {
-      console.log("Added item");
-    }
+  return new Promise((resolve, reject) => {
+    docClient.put(params, (err) => {
+      return err ? reject(new Error(`Unable to add item. ${err}`)) : resolve();
+    });
   });
+}
+
+function getTasksFromDatabase() {
+  const params = {
+    TableName: table,
+  };
+
+  return new Promise((resolve, reject) => {
+    docClient.scan(params, (err, data) => {
+      return err
+        ? reject(new Error(`Unable to scan table. ${err}`))
+        : resolve(data.Items);
+    });
+  });
+}
+
+export default function DashboardPageModel() {
+  return { addTaskToDatabase, getTasksFromDatabase };
 }
