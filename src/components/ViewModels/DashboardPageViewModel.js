@@ -1,11 +1,16 @@
-import { useState } from "react";
 import TaskFormFields from "./TaskFormFields";
-import addTaskToDatabase from "../Models/DashboardPageModel";
+import useTaskCreation from "./useTaskCreation";
 
-export default function useTaskCreation() {
-  const [fieldElements, setFieldElements] = useState(TaskFormFields);
-  const [tasks, setTasks] = useState([]);
-  const { formLabel, fields } = fieldElements;
+export default function DashboardPageViewModel() {
+  const {
+    formLabel,
+    fields,
+    tasks,
+    fieldElements,
+    setTasks,
+    setFieldElements,
+    addTaskToDatabase,
+  } = useTaskCreation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,8 +20,7 @@ export default function useTaskCreation() {
       Object.assign(newTask, { [field.fieldId]: field.fieldValue });
     });
 
-    setTasks([...tasks, newTask]);
-    addTaskToDatabase(newTask);
+    addTaskToDatabase(newTask).then(() => setTasks([...tasks, newTask]));
     setFieldElements(TaskFormFields);
   };
 
