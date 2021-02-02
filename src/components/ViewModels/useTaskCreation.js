@@ -1,17 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TaskFormFields from "./TaskFormFields";
-import DashboardPageModel from "../Models/DashboardPageModel";
 
 export default function useTaskCreation() {
   const [fieldElements, setFieldElements] = useState(TaskFormFields);
   const [tasks, setTasks] = useState([]);
-  const { addTaskToDatabase, getTasksFromDatabase } = DashboardPageModel();
   const { formLabel, fields } = fieldElements;
-  useEffect(() => {
-    getTasksFromDatabase().then((retrievedTasks) => {
-      setTasks(retrievedTasks);
-    });
-  }, [getTasksFromDatabase]);
 
   return {
     formLabel,
@@ -20,6 +13,5 @@ export default function useTaskCreation() {
     fieldElements,
     setTasks,
     setFieldElements,
-    addTaskToDatabase,
   };
 }

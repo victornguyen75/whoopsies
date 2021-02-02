@@ -1,7 +1,10 @@
+import { useEffect } from "react";
+import DashboardPageModel from "../Models/DashboardPageModel";
 import TaskFormFields from "./TaskFormFields";
 import useTaskCreation from "./useTaskCreation";
 
 export default function DashboardPageViewModel() {
+  const { addTaskToDatabase, getTasksFromDatabase } = DashboardPageModel();
   const {
     formLabel,
     fields,
@@ -9,8 +12,15 @@ export default function DashboardPageViewModel() {
     fieldElements,
     setTasks,
     setFieldElements,
-    addTaskToDatabase,
   } = useTaskCreation();
+
+  useEffect(() => {
+    getTasksFromDatabase().then((retrievedTasks) => {
+      setTasks(retrievedTasks);
+    });
+
+    return () => {};
+  }, [getTasksFromDatabase, setTasks]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
