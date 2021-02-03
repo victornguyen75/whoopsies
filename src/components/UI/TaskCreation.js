@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormContext from "../Providers/FormContext";
+import TaskCreationStyles from "./TaskCreationStyles";
 
 export default function TaskCreation({ fields, handleSubmit }) {
-  const textStyles = { marginRight: "1em" };
+  const { TextField } = TaskCreationStyles();
   const handleChange = useContext(FormContext);
   const displayFields = fields.map((field) => (
     <TextField
@@ -14,7 +14,6 @@ export default function TaskCreation({ fields, handleSubmit }) {
       variant="filled"
       size="small"
       value={field.fieldValue}
-      style={textStyles}
       onChange={(event) => handleChange(field.fieldId, event)}
     />
   ));
