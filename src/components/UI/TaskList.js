@@ -1,17 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TaskCard from "./TaskCard";
+import TaskListStyles from "./TaskListStyles";
 
 export default function TaskList({ header, tasks }) {
+  const { List } = TaskListStyles();
   const fullHeader = `${header} (${tasks.length})`;
-  const listStyles = {
-    borderRadius: "4px",
-    backgroundColor: "lightgray",
-    padding: "1px 5px 1px 5px",
-  };
 
   return (
-    <div style={listStyles}>
+    <List>
       <b>{fullHeader}</b>
       {tasks.map((task) => (
         <TaskCard
@@ -21,7 +18,7 @@ export default function TaskList({ header, tasks }) {
           release={task.release}
         />
       ))}
-    </div>
+    </List>
   );
 }
 
