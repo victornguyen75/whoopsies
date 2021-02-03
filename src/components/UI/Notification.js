@@ -1,5 +1,7 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import ErrorIcon from "@material-ui/icons/Error";
 import PropTypes from "prop-types";
 
 export default function Notification({ text, show }) {
@@ -14,8 +16,19 @@ export default function Notification({ text, show }) {
     transition: "top 1s ease",
     width: "15em",
   };
+  const iconStyles = {
+    verticalAlign: "top",
+  };
+
+  const displayIcon = text.includes("Success") ? (
+    <NotificationsIcon style={iconStyles} />
+  ) : (
+    <ErrorIcon style={iconStyles} />
+  );
+
   return (
-    <Card type="button" style={styles}>
+    <Card style={styles}>
+      {displayIcon}
       {text}
     </Card>
   );
