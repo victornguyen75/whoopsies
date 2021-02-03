@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Grid from "@material-ui/core/Grid";
 import TaskCreation from "../UI/TaskCreation";
 import TaskList from "../UI/TaskList";
 import FormContext from "../Providers/FormContext";
 import Notification from "../UI/Notification";
+import DashboardPageViewStyles from "./DashboardPageViewStyles";
 
 export default function DashboardPageView({ viewModel }) {
-  const gridStyles = { margin: "0px" };
+  const { Grid } = DashboardPageViewStyles();
   const HEADERS = [
     "TO DO",
     "IN ANALYSIS",
@@ -35,7 +35,6 @@ export default function DashboardPageView({ viewModel }) {
         justify="center"
         alignItems="flex-start"
         spacing={5}
-        style={gridStyles}
       >
         {HEADERS.map((header) => (
           <Grid key={header} item>
