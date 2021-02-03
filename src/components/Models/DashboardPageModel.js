@@ -1,4 +1,5 @@
 import AWS from "aws-sdk";
+import moment from "moment";
 import { accessKeyId, secretAccessKey } from "../../.awsconfig.json";
 
 AWS.config.update({
@@ -21,9 +22,9 @@ function addTaskToDatabase(newTask) {
     priority,
     sprint,
     release,
-    dateCreated,
-    dateUpdated,
   } = newTask;
+
+  const dateCreated = moment().format();
 
   const params = {
     TableName: table,
@@ -37,7 +38,7 @@ function addTaskToDatabase(newTask) {
       sprint,
       release,
       dateCreated,
-      dateUpdated,
+      dateUpdated: dateCreated,
     },
   };
 

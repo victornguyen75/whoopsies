@@ -50,18 +50,6 @@ export default function TaskFormFields() {
         fieldType: "text",
         fieldValue: "",
       },
-      {
-        fieldId: "dateCreated",
-        fieldLabel: "Date Created",
-        fieldType: "text",
-        fieldValue: "",
-      },
-      {
-        fieldId: "dateUpdated",
-        fieldLabel: "Date Updated",
-        fieldType: "text",
-        fieldValue: "",
-      },
     ],
   };
 }
