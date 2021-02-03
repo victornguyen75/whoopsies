@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import DashboardPageModel from "../Models/DashboardPageModel";
 import TaskFormFields from "./TaskFormFields";
 import useTaskCreation from "./useTaskCreation";
 
 export default function DashboardPageViewModel() {
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationText, setNotificationText] = useState("");
   const { addTaskToDatabase, getTasksFromDatabase } = DashboardPageModel();
   const {
     formLabel,
@@ -14,12 +16,24 @@ export default function DashboardPageViewModel() {
     setFieldElements,
   } = useTaskCreation();
 
-  useEffect(() => {
-    getTasksFromDatabase().then((retrievedTasks) => {
-      setTasks(retrievedTasks);
-    });
+  const toggleNotification = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
 
-    return () => {};
+  useEffect(() => {
+    getTasksFromDatabase()
+      .then((retrievedTasks) => {
+        setTasks(retrievedTasks);
+        setNotificationText("Successfully retrieved items!");
+      })
+      .catch((err) => {
+        setNotificationText(err.toString());
+      });
+
+    toggleNotification();
   }, [getTasksFromDatabase, setTasks]);
 
   const handleSubmit = (e) => {
@@ -30,7 +44,17 @@ export default function DashboardPageViewModel() {
       Object.assign(newTask, { [field.fieldId]: field.fieldValue });
     });
 
-    addTaskToDatabase(newTask).then(() => setTasks([...tasks, newTask]));
+    addTaskToDatabase(newTask)
+      .then(() => {
+        setTasks([...tasks, newTask]);
+        setNotificationText("Successfully added the item!");
+      })
+      .catch((err) => {
+        setNotificationText(err.toString());
+      });
+
+    toggleNotification();
+
     setFieldElements(TaskFormFields);
   };
 
@@ -48,6 +72,8 @@ export default function DashboardPageViewModel() {
     formLabel,
     fields,
     tasks,
+    showNotification,
+    notificationText,
     handleSubmit,
     handleChange,
   };

@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import TaskCreation from "../UI/TaskCreation";
 import TaskList from "../UI/TaskList";
 import FormContext from "../Providers/FormContext";
+import Notification from "../UI/Notification";
 
 export default function DashboardPageView({ viewModel }) {
   const gridStyles = { margin: "0px" };
@@ -17,6 +18,10 @@ export default function DashboardPageView({ viewModel }) {
 
   return (
     <>
+      <Notification
+        show={viewModel.showNotification}
+        text={viewModel.notificationText}
+      />
       <h2>{viewModel.formLabel}</h2>
       <FormContext.Provider value={viewModel.handleChange}>
         <TaskCreation
@@ -48,6 +53,8 @@ DashboardPageView.propTypes = {
     formLabel: PropTypes.string,
     fields: PropTypes.arrayOf(PropTypes.object),
     tasks: PropTypes.arrayOf(PropTypes.object),
+    showNotification: PropTypes.bool,
+    notificationText: PropTypes.string,
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
   }),
@@ -58,6 +65,8 @@ DashboardPageView.defaultProps = {
     formLabel: "",
     fields: [],
     tasks: [],
+    showNotification: false,
+    notificationText: "",
     handleSubmit: () => {},
     handleChange: () => {},
   },
