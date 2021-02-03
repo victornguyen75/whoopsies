@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Card from "@material-ui/core/Card";
+import TaskCardStyles from "./TaskCardStyles";
 
 export default function TaskCard({ name, priority, release }) {
-  const cardStyles = { margin: "5px 0px" };
+  const { Card } = TaskCardStyles();
 
   return (
-    <Card variant="outlined" style={cardStyles}>
+    <Card variant="outlined">
       {"Name: "}
       {name}
       <br />
