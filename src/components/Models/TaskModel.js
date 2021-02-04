@@ -63,6 +63,6 @@ function getTasksFromDatabase() {
   });
 }
 
-export default function DashboardPageModel() {
+export default function TaskModel() {
   return { addTaskToDatabase, getTasksFromDatabase };
 }
