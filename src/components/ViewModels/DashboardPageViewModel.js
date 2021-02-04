@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import DashboardPageModel from "../Models/DashboardPageModel";
-import useTaskCreation from "./useTaskCreation";
-import useNotifications from "./useNotifications";
+import useTaskCreation from "./CustomHooks/useTaskCreation";
+import useNotifications from "./CustomHooks/useNotifications";
 
 export default function DashboardPageViewModel() {
   const { getTasksFromDatabase } = DashboardPageModel();

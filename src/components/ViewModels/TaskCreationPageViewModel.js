@@ -1,7 +1,7 @@
 import DashboardPageModel from "../Models/DashboardPageModel";
 import TaskFormFields from "./TaskFormFields";
-import useTaskCreation from "./useTaskCreation";
-import useNotifications from "./useNotifications";
+import useTaskCreation from "./CustomHooks/useTaskCreation";
+import useNotifications from "./CustomHooks/useNotifications";
 
 export default function TaskCreationPageViewModel() {
   const { addTaskToDatabase } = DashboardPageModel();
