@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import FormContext from "../Providers/FormContext";
-import TaskCreationStyles from "./TaskCreationStyles";
+import CreateTaskStyles from "./CreateTaskStyles";
 
-export default function TaskCreation({ fields, handleSubmit }) {
-  const { TextField } = TaskCreationStyles();
+export default function CreateTask({ fields, handleSubmit }) {
+  const { TextField } = CreateTaskStyles();
   const handleChange = useContext(FormContext);
   const displayFields = fields.map((field) => (
     <TextField
@@ -28,12 +28,12 @@ export default function TaskCreation({ fields, handleSubmit }) {
   );
 }
 
-TaskCreation.propTypes = {
+CreateTask.propTypes = {
   fields: PropTypes.arrayOf(PropTypes.object),
   handleSubmit: PropTypes.func,
 };
 
-TaskCreation.defaultProps = {
+CreateTask.defaultProps = {
   fields: [],
   handleSubmit: () => {},
 };

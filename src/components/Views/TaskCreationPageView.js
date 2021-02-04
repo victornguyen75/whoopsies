@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TaskCreation from "../UI/TaskCreation";
+import CreateTask from "../UI/CreateTask";
 import FormContext from "../Providers/FormContext";
 import Notification from "../UI/Notification";
 
-export default function TaskCreationpageView({ viewModel }) {
+export default function TaskCreationPageView({ viewModel }) {
   return (
     <>
       <h2>{viewModel.formLabel}</h2>
@@ -13,7 +13,7 @@ export default function TaskCreationpageView({ viewModel }) {
         text={viewModel.notificationText}
       />
       <FormContext.Provider value={viewModel.handleChange}>
-        <TaskCreation
+        <CreateTask
           fields={viewModel.fields}
           handleSubmit={viewModel.handleSubmit}
         />
@@ -22,7 +22,7 @@ export default function TaskCreationpageView({ viewModel }) {
   );
 }
 
-TaskCreationpageView.propTypes = {
+TaskCreationPageView.propTypes = {
   viewModel: PropTypes.shape({
     formLabel: PropTypes.string,
     fields: PropTypes.arrayOf(PropTypes.object),
@@ -33,7 +33,7 @@ TaskCreationpageView.propTypes = {
   }),
 };
 
-TaskCreationpageView.defaultProps = {
+TaskCreationPageView.defaultProps = {
   viewModel: {
     formLabel: "",
     fields: [],

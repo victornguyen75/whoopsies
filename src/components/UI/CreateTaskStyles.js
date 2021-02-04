@@ -5,6 +5,6 @@ const TextField = styled(TextFieldUnstyled)`
   margin-right: 1em;
 `;
 
-export default function TaskCreationStyles() {
+export default function CreateTaskStyles() {
   return { TextField };
 }
