@@ -1,80 +1,34 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import DashboardPageModel from "../Models/DashboardPageModel";
-import TaskFormFields from "./TaskFormFields";
 import useTaskCreation from "./useTaskCreation";
+import useNotifications from "./useNotifications";
 
 export default function DashboardPageViewModel() {
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationText, setNotificationText] = useState("");
-  const { addTaskToDatabase, getTasksFromDatabase } = DashboardPageModel();
+  const { getTasksFromDatabase } = DashboardPageModel();
+  const { tasks, setTasks } = useTaskCreation();
   const {
-    formLabel,
-    fields,
-    tasks,
-    fieldElements,
-    setTasks,
-    setFieldElements,
-  } = useTaskCreation();
-
-  const toggleNotification = () => {
-    setShowNotification(true);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 3000);
-  };
+    showNotification,
+    notificationText,
+    toggleNotification,
+  } = useNotifications();
 
   useEffect(() => {
     getTasksFromDatabase()
       .then((retrievedTasks) => {
         setTasks(retrievedTasks);
-        setNotificationText("Successfully retrieved items!");
+        toggleNotification("Successfully retrieved items!");
       })
       .catch((err) => {
-        setNotificationText(err.toString());
+        toggleNotification(err.toString());
       });
-
-    toggleNotification();
+    // Excluding toggleNotification from the dependency list
+    // since it causes an infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getTasksFromDatabase, setTasks]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newTask = {};
-    fieldElements.fields.forEach((field) => {
-      Object.assign(newTask, { [field.fieldId]: field.fieldValue });
-    });
-
-    addTaskToDatabase(newTask)
-      .then(() => {
-        setTasks([...tasks, newTask]);
-        setNotificationText("Successfully added the item!");
-      })
-      .catch((err) => {
-        setNotificationText(err.toString());
-      });
-
-    toggleNotification();
-
-    setFieldElements(TaskFormFields);
-  };
-
-  const handleChange = (id, event) => {
-    const newElements = { ...fieldElements };
-    const fieldIndexToUpdate = newElements.fields.findIndex(
-      (field) => id === field.fieldId
-    );
-
-    newElements.fields[fieldIndexToUpdate].fieldValue = event.target.value;
-    setFieldElements(newElements);
-  };
-
   return {
-    formLabel,
-    fields,
     tasks,
     showNotification,
     notificationText,
-    handleSubmit,
-    handleChange,
   };
 }
