@@ -21,10 +21,7 @@ export default function DashboardPageViewModel() {
       .catch((err) => {
         toggleNotification(err.toString());
       });
-    // Excluding toggleNotification from the dependency list
-    // since it causes an infinite loop
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getTasksFromDatabase, setTasks]);
+  }, [getTasksFromDatabase, setTasks, toggleNotification]);
 
   return {
     tasks,
