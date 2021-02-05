@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TaskList from "../UI/TaskList";
 import Notification from "../UI/Notification";
+import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 import DashboardPageViewStyles from "./DashboardPageViewStyles";
 
 export default function DashboardPageView({ viewModel }) {
@@ -16,6 +17,7 @@ export default function DashboardPageView({ viewModel }) {
 
   return (
     <>
+      <WhoopsiesHeader />
       <Notification
         show={viewModel.showNotification}
         text={viewModel.notificationText}

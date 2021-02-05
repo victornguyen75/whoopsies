@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CreateTask from "../UI/CreateTask";
 import FormContext from "../Providers/FormContext";
+import CreateTask from "../UI/CreateTask";
 import Notification from "../UI/Notification";
+import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 
 export default function TaskCreationPageView({ viewModel }) {
   return (
     <>
+      <WhoopsiesHeader />
       <h2>{viewModel.formLabel}</h2>
       <Notification
         show={viewModel.showNotification}
