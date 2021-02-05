@@ -1,5 +1,10 @@
 import "./App.css";
-import WhoopsiesHeader from "./components/UI/WhoopsiesHeader";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import TaskCreationPageView from "./components/Views/TaskCreationPageView";
 import TaskCreationPageViewModel from "./components/ViewModels/TaskCreationPageViewModel";
 import DashboardPageView from "./components/Views/DashboardPageView";
@@ -8,9 +13,17 @@ import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewMod
 function App() {
   return (
     <>
-      <WhoopsiesHeader />
-      <TaskCreationPageView viewModel={TaskCreationPageViewModel()} />
-      <DashboardPageView viewModel={DashboardPageViewModel()} />
+      <Router>
+        <Switch>
+          <Route path="/create-task">
+            <TaskCreationPageView viewModel={TaskCreationPageViewModel()} />
+          </Route>
+          <Route path="/dashboard">
+            <DashboardPageView viewModel={DashboardPageViewModel()} />
+          </Route>
+          <Redirect from="/whoopsies" to="/create-task" />
+        </Switch>
+      </Router>
     </>
   );
 }
