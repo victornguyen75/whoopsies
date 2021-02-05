@@ -29,14 +29,22 @@ export default function TaskFormFields() {
       {
         fieldId: "status",
         fieldLabel: "Status",
-        fieldType: "text",
-        fieldValue: "",
+        fieldType: "select",
+        fieldOptions: [
+          "TO DO",
+          "IN ANALYSIS",
+          "IN DEVELOPMENT",
+          "IN TESTING",
+          "DONE",
+        ],
+        fieldValue: "TO DO",
       },
       {
         fieldId: "priority",
         fieldLabel: "Priority",
-        fieldType: "text",
-        fieldValue: "",
+        fieldType: "select",
+        fieldOptions: ["Cosmetic", "Low", "Medium", "High", "Showstopper"],
+        fieldValue: "Cosmetic",
       },
       {
         fieldId: "sprint",

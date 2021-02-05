@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FormContext from "../Providers/FormContext";
-import CreateTask from "../UI/CreateTask";
+import TaskForm from "../UI/TaskForm";
 import Notification from "../UI/Notification";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 
@@ -15,7 +15,7 @@ export default function TaskCreationPageView({ viewModel }) {
         text={viewModel.notificationText}
       />
       <FormContext.Provider value={viewModel.handleChange}>
-        <CreateTask
+        <TaskForm
           fields={viewModel.fields}
           handleSubmit={viewModel.handleSubmit}
         />
