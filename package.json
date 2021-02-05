@@ -1,7 +1,7 @@
 {
   "name": "whoopsies",
   "version": "0.1.0",
-  "homepage": "http://victornguyen75.github.io/whoopsies",
+  "homepage": "http://victornguyen75.github.io/whoopsies/",
   "private": true,
   "type": "module",
   "dependencies": {
