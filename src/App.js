@@ -15,13 +15,13 @@ function App() {
     <>
       <Router>
         <Switch>
-          <Route path="/create-task">
+          <Route path="/whoopsies/create-task">
             <TaskCreationPageView viewModel={TaskCreationPageViewModel()} />
           </Route>
-          <Route path="/dashboard">
+          <Route path="/whoopsies/dashboard">
             <DashboardPageView viewModel={DashboardPageViewModel()} />
           </Route>
-          <Redirect from="/whoopsies" to="/create-task" />
+          <Redirect from="/whoopsies" to="/whoopsies/create-task" />
         </Switch>
       </Router>
     </>
