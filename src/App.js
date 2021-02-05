@@ -1,4 +1,4 @@
-import { HashRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import TaskCreationPageView from "./components/Views/TaskCreationPageView";
 import TaskCreationPageViewModel from "./components/ViewModels/TaskCreationPageViewModel";
 import DashboardPageView from "./components/Views/DashboardPageView";
@@ -6,15 +6,22 @@ import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewMod
 
 function App() {
   return (
-    <HashRouter basename="/">
-      <Route path="/create-task">
+    <Router basename="/">
+      <ul>
+        <li>
+          <Link to="/whoopsies/create-task">Create Task</Link>
+        </li>
+        <li>
+          <Link to="/whoopsies/dashboard">Dashboard</Link>
+        </li>
+      </ul>
+      <Route path="/whoopsies/create-task">
         <TaskCreationPageView viewModel={TaskCreationPageViewModel()} />
       </Route>
-      <Route path="/dashboard">
+      <Route path="/whoopsies/dashboard">
         <DashboardPageView viewModel={DashboardPageViewModel()} />
       </Route>
-      <Redirect from="/whoopsies/" to="/create-task" />
-    </HashRouter>
+    </Router>
   );
 }
 
