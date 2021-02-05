@@ -1,5 +1,5 @@
 import AWS from "aws-sdk";
-import moment from "moment";
+import dayjs from "dayjs";
 import { accessKeyId, secretAccessKey } from "../../.awsconfig.json";
 
 AWS.config.update({
@@ -24,7 +24,7 @@ function addTaskToDatabase(newTask) {
     release,
   } = newTask;
 
-  const dateCreated = moment().format();
+  const dateCreated = dayjs().format();
 
   const params = {
     TableName: table,
