@@ -7,7 +7,7 @@ import DashboardPageViewStyles from "./DashboardPageViewStyles";
 
 export default function DashboardPageView({ viewModel }) {
   const { Grid } = DashboardPageViewStyles();
-  const HEADERS = [
+  const STATUSES = [
     "TO DO",
     "IN ANALYSIS",
     "IN DEVELOPMENT",
@@ -15,6 +15,16 @@ export default function DashboardPageView({ viewModel }) {
     "DONE",
   ];
 
+  const displayLists = STATUSES.map((status) => {
+    const tasksOrganizedByStatus = viewModel.tasks.filter(
+      (task) => status === task.status
+    );
+    return (
+      <Grid key={status} item>
+        <TaskList header={status} tasks={tasksOrganizedByStatus} />
+      </Grid>
+    );
+  });
   return (
     <>
       <WhoopsiesHeader />
@@ -29,12 +39,7 @@ export default function DashboardPageView({ viewModel }) {
         alignItems="flex-start"
         spacing={5}
       >
-        {HEADERS.map((header) => (
-          <Grid key={header} item>
-            {" "}
-            <TaskList header={header} tasks={viewModel.tasks} />
-          </Grid>
-        ))}
+        {displayLists}
       </Grid>
     </>
   );
