@@ -5,9 +5,9 @@ name: Whoopsies! CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -18,10 +18,14 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-      # will add npm test when unit tests work again
-    - run: npm run build --if-present
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node_version }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm run build --if-present
+          npm test
+        # will add npm test when unit tests work again
