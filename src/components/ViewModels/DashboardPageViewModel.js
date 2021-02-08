@@ -3,6 +3,13 @@ import TaskModel from "../Models/TaskModel";
 import useTaskCreation from "./CustomHooks/useTaskCreation";
 import useNotifications from "./CustomHooks/useNotifications";
 
+function prioritize(item1, item2) {
+  const priorities = ["Cosmetic", "Low", "Medium", "High", "Showstopper"];
+  return priorities.indexOf(item1.priority) > priorities.indexOf(item2.priority)
+    ? -1
+    : 1;
+}
+
 export default function DashboardPageViewModel() {
   const { getTasksFromDatabase } = TaskModel();
   const { tasks, setTasks } = useTaskCreation();
@@ -15,7 +22,9 @@ export default function DashboardPageViewModel() {
   useEffect(() => {
     getTasksFromDatabase()
       .then((retrievedTasks) => {
-        setTasks(retrievedTasks);
+        const prioritizedTasks = [...retrievedTasks].sort(prioritize);
+
+        setTasks(prioritizedTasks);
         toggleNotification("Successfully retrieved items!");
       })
       .catch((err) => {
