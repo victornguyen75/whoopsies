@@ -18,12 +18,7 @@ function getBriefName(taskName) {
 
 export default function TaskCard({ name }) {
   const { Card } = TaskCardStyles();
-  return (
-    <Card variant="outlined">
-      {"Name: "}
-      {getBriefName(name)}
-    </Card>
-  );
+  return <Card variant="outlined">{getBriefName(name)}</Card>;
 }
 
 TaskCard.propTypes = {
