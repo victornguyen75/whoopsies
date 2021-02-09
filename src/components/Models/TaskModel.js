@@ -1,6 +1,8 @@
 import AWS from "aws-sdk";
 import dayjs from "dayjs";
 
+process.env.AWS_SDK_LOAD_CONFIG = true;
+
 AWS.config.update({
   region: "us-east-2",
   endpoint: "https://dynamodb.us-east-2.amazonaws.com",
