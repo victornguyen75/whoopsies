@@ -14,16 +14,29 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const table = "Oopsies";
 const project = "Whoopsies!";
 
-function addTaskToDatabase(newTask) {
-  const { id, name, description, status, priority, sprint, release } = newTask;
+function getLatestTaskId() {
+  const params = {
+    TableName: table,
+  };
 
+  return new Promise((resolve, reject) => {
+    docClient.scan(params, (err, data) => {
+      return err
+        ? reject(new Error(`Unable to scan table. ${err}`))
+        : resolve(data.Count + 1);
+    });
+  });
+}
+
+function addTaskToDatabase(id, newTask) {
+  const { name, description, status, priority, sprint, release } = newTask;
   const dateCreated = dayjs().format();
 
   const params = {
     TableName: table,
     Item: {
       project,
-      id: parseInt(id, 10),
+      id,
       name,
       description,
       status,
@@ -57,5 +70,5 @@ function getTasksFromDatabase() {
 }
 
 export default function TaskModel() {
-  return { addTaskToDatabase, getTasksFromDatabase };
+  return { getLatestTaskId, addTaskToDatabase, getTasksFromDatabase };
 }

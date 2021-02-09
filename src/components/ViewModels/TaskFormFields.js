@@ -3,18 +3,6 @@ export default function TaskFormFields() {
     formLabel: "Task Creation Form",
     fields: [
       {
-        fieldId: "id",
-        fieldLabel: "Task ID",
-        fieldType: "text",
-        fieldValue: "",
-      },
-      {
-        fieldId: "project",
-        fieldLabel: "Project Name",
-        fieldType: "text",
-        fieldValue: "",
-      },
-      {
         fieldId: "name",
         fieldLabel: "Task Name",
         fieldType: "text",

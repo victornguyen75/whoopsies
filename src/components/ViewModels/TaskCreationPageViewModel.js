@@ -4,7 +4,7 @@ import useTaskCreation from "./CustomHooks/useTaskCreation";
 import useNotifications from "./CustomHooks/useNotifications";
 
 export default function TaskCreationPageViewModel() {
-  const { addTaskToDatabase } = TaskModel();
+  const { getLatestTaskId, addTaskToDatabase } = TaskModel();
   const {
     formLabel,
     fields,
@@ -13,7 +13,6 @@ export default function TaskCreationPageViewModel() {
     setTasks,
     setFieldElements,
   } = useTaskCreation();
-
   const {
     showNotification,
     notificationText,
@@ -28,7 +27,8 @@ export default function TaskCreationPageViewModel() {
       Object.assign(newTask, { [field.fieldId]: field.fieldValue });
     });
 
-    addTaskToDatabase(newTask)
+    getLatestTaskId()
+      .then((id) => addTaskToDatabase(id, newTask))
       .then(() => {
         setTasks([...tasks, newTask]);
         toggleNotification("Successfully added the item!");
