@@ -1,28 +1,21 @@
 import AWS from "aws-sdk";
 import dayjs from "dayjs";
-import { accessKeyId, secretAccessKey } from "../../.awsconfig.json";
+
+console.log(process.env);
 
 AWS.config.update({
   region: "us-east-2",
   endpoint: "https://dynamodb.us-east-2.amazonaws.com",
-  accessKeyId,
-  secretAccessKey,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
-const table = "Oopsies-test";
+const table = "Oopsies";
+const project = "Whoopsies!";
 
 function addTaskToDatabase(newTask) {
-  const {
-    id,
-    project,
-    name,
-    description,
-    status,
-    priority,
-    sprint,
-    release,
-  } = newTask;
+  const { id, name, description, status, priority, sprint, release } = newTask;
 
   const dateCreated = dayjs().format();
 
