@@ -1,13 +1,11 @@
 import AWS from "aws-sdk";
 import dayjs from "dayjs";
 
-process.env.AWS_SDK_LOAD_CONFIG = true;
-
 AWS.config.update({
-  region: "us-east-2",
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+  region: process.env.REACT_APP_AWS_REGION,
   endpoint: "https://dynamodb.us-east-2.amazonaws.com",
-  accessKeyId: process.env["aws-access-key-id"],
-  secretAccessKey: process.env["aws-secret-access-key"],
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();

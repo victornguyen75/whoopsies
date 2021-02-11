@@ -27,9 +27,15 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
+          # the keys must be named this way for the aws-action
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
+
+          # the keys must be named this way for the create-react-app custom environment variables
+          REACT_APP_AWS_SECRET_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          REACT_APP_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          REACT_APP_AWS_REGION: us-east-2
 
       - name: npm install, build and test
         run: |
