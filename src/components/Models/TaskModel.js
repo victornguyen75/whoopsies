@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 AWS.config.update({
   accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-  region: process.env.REACT_APP_AWS_REGION,
+  region: "us-east-2",
   endpoint: "https://dynamodb.us-east-2.amazonaws.com",
 });
 
