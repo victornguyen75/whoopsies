@@ -33,7 +33,7 @@ jobs:
           aws-region: us-east-2
 
       - name: Set Environment Variables
-        with:
+        env:
           # the keys must be named this way for the create-react-app custom environment variables
           REACT_APP_AWS_SECRET_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
           REACT_APP_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
