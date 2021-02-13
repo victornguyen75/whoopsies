@@ -9,12 +9,6 @@ export default function TaskFormFields() {
         fieldValue: "",
       },
       {
-        fieldId: "description",
-        fieldLabel: "Task Description",
-        fieldType: "text",
-        fieldValue: "",
-      },
-      {
         fieldId: "status",
         fieldLabel: "Status",
         fieldType: "select",
@@ -44,6 +38,12 @@ export default function TaskFormFields() {
         fieldId: "release",
         fieldLabel: "Release Date",
         fieldType: "text",
+        fieldValue: "",
+      },
+      {
+        fieldId: "description",
+        fieldLabel: "Task Description",
+        fieldType: "text-long",
         fieldValue: "",
       },
     ],

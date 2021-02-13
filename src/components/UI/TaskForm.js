@@ -15,9 +15,23 @@ export default function TaskForm({ fields, handleSubmit }) {
           <TextField
             key={field.fieldId}
             label={field.fieldLabel}
-            variant="filled"
-            size="small"
             value={field.fieldValue}
+            size="small"
+            variant="outlined"
+            onChange={(event) => handleChange(field.fieldId, event)}
+          />
+        );
+      case "text-long":
+        return (
+          <TextField
+            key={field.fieldId}
+            label={field.fieldLabel}
+            value={field.fieldValue}
+            multiline
+            fullWidth
+            rows={5}
+            size="small"
+            variant="outlined"
             onChange={(event) => handleChange(field.fieldId, event)}
           />
         );
@@ -27,9 +41,9 @@ export default function TaskForm({ fields, handleSubmit }) {
             select
             key={field.fieldId}
             label={field.fieldLabel}
-            variant="filled"
-            size="small"
             value={field.fieldValue}
+            size="small"
+            variant="outlined"
             onChange={(event) => handleChange(field.fieldId, event)}
           >
             {field.fieldOptions.map((option) => (
