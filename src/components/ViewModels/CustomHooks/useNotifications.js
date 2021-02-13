@@ -10,7 +10,7 @@ export default function useNotifications() {
       setShowNotification(true);
       setTimeout(() => {
         setShowNotification(false);
-      }, 3000);
+      }, 5000);
     },
     [setShowNotification, setNotificationText]
   );
