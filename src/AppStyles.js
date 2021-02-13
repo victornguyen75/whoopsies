@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Content = styled.main`
-  margin-left: 8em;
+  margin-left: 10em;
 `;
 
 export default function AppStyles() {

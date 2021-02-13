@@ -5,21 +5,23 @@ import ListItem from "@material-ui/core/ListItem";
 import SidebarStyles from "./SidebarStyles";
 
 export default function Sidebar() {
-  const { Drawer } = SidebarStyles();
+  const { Drawer, DashboardIcon, CreateTaskIcon } = SidebarStyles();
   return (
     <Drawer variant="permanent">
       <List>
         <ListItem button>
-          <Link to="/whoopsies/create-task">Create Task</Link>
+          <Link to="/whoopsies/dashboard">
+            <DashboardIcon />
+            Dashboard
+          </Link>
         </ListItem>
-        <ListItem>
-          <Link to="/whoopsies/dashboard">Dashboard</Link>
+        <ListItem button>
+          <Link to="/whoopsies/create-task">
+            <CreateTaskIcon />
+            Create Task
+          </Link>
         </ListItem>
       </List>
     </Drawer>
   );
 }
-
-Sidebar.propTypes = {};
-
-Sidebar.defaultProps = {};
