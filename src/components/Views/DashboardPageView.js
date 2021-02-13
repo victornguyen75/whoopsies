@@ -37,7 +37,7 @@ export default function DashboardPageView({ viewModel }) {
         direction="row"
         justify="center"
         alignItems="flex-start"
-        spacing={5}
+        spacing={2}
       >
         {displayLists}
       </Grid>

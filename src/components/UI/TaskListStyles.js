@@ -4,6 +4,7 @@ const List = styled.div`
   border-radius: 4px;
   background-color: lightgray;
   padding: 5px 5px 1px 5px;
+  width: 245px;
 `;
 
 export default function TaskListStyles() {
