@@ -12,11 +12,11 @@ function App() {
     <Router basename="/">
       <Sidebar />
       <Content>
-        <Route path="/whoopsies/create-task">
-          <TaskCreationPageView viewModel={TaskCreationPageViewModel()} />
-        </Route>
         <Route path="/whoopsies/dashboard">
           <DashboardPageView viewModel={DashboardPageViewModel()} />
+        </Route>
+        <Route path="/whoopsies/create-task">
+          <TaskCreationPageView viewModel={TaskCreationPageViewModel()} />
         </Route>
       </Content>
     </Router>
