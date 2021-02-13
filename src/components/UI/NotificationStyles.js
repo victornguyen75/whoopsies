@@ -16,7 +16,7 @@ const NotificationCard = styled(CardUnstyled)`
   top: ${(props) => (props.show ? "1em" : "-10em")};
   right: 1em;
   z-index: 999;
-  transition: top 1s ease;
+  transition: top 1s ease !important;
   width: 16em;
 `;
 
