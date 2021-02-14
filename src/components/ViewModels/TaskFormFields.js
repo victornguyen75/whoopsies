@@ -53,6 +53,11 @@ export default function TaskFormFields() {
         fieldValue: "",
       },
       {
+        fieldId: "create",
+        fieldLabel: "Create",
+        fieldType: "button",
+      },
+      {
         fieldId: "reset",
         fieldLabel: "Reset the form",
         fieldType: "checkbox",

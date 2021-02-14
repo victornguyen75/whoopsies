@@ -11,8 +11,6 @@ export default function TaskForm({ fields, handleSubmit }) {
 
   const handleChange = useContext(FormContext);
 
-  const checkboxField = fields[fields.length - 1];
-
   const displayFields = fields.map((field) => {
     switch (field.fieldType) {
       case "text":
@@ -43,10 +41,10 @@ export default function TaskForm({ fields, handleSubmit }) {
       case "select":
         return (
           <TextField
-            select
             key={field.fieldId}
             label={field.fieldLabel}
             value={field.fieldValue}
+            select
             size="small"
             variant="outlined"
             onChange={(event) => handleChange(field.fieldId, event)}
@@ -58,30 +56,39 @@ export default function TaskForm({ fields, handleSubmit }) {
             ))}
           </TextField>
         );
+      case "button":
+        return (
+          <Button
+            key={field.fieldId}
+            variant="contained"
+            color="primary"
+            type="submit"
+            size="large"
+          >
+            {field.fieldLabel}
+          </Button>
+        );
+      case "checkbox":
+        return (
+          <FormControlLabel
+            key={field.fieldId}
+            label={field.fieldLabel}
+            control={
+              // eslint-disable-next-line react/jsx-wrap-multilines
+              <Checkbox
+                checked={field.fieldValue}
+                onChange={(event) => handleChange(field.fieldId, event)}
+                color="primary"
+              />
+            }
+          />
+        );
       default:
         return null;
     }
   });
 
-  return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      {displayFields}
-      <Button variant="contained" color="primary" type="submit" size="large">
-        Create
-      </Button>
-      <FormControlLabel
-        control={
-          // eslint-disable-next-line react/jsx-wrap-multilines
-          <Checkbox
-            checked={checkboxField.fieldValue}
-            onChange={(event) => handleChange(checkboxField.fieldId, event)}
-            color="primary"
-          />
-        }
-        label={checkboxField.fieldLabel}
-      />
-    </form>
-  );
+  return <form onSubmit={(e) => handleSubmit(e)}>{displayFields}</form>;
 }
 
 TaskForm.propTypes = {
