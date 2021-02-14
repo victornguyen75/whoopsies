@@ -23,6 +23,8 @@ export default function TaskCreationPageViewModel() {
     e.preventDefault();
 
     const newTask = {};
+    const willReset = fields[fields.length - 1].fieldValue;
+
     fieldElements.fields.forEach((field) => {
       Object.assign(newTask, { [field.fieldId]: field.fieldValue });
     });
@@ -37,7 +39,9 @@ export default function TaskCreationPageViewModel() {
         toggleNotification(err.toString());
       });
 
-    setFieldElements(TaskFormFields);
+    if (willReset) {
+      setFieldElements(TaskFormFields);
+    }
   };
 
   const handleChange = (id, event) => {
@@ -46,7 +50,11 @@ export default function TaskCreationPageViewModel() {
       (field) => id === field.fieldId
     );
 
-    newElements.fields[fieldIndexToUpdate].fieldValue = event.target.value;
+    if (id === "reset") {
+      newElements.fields[fieldIndexToUpdate].fieldValue = event.target.checked;
+    } else {
+      newElements.fields[fieldIndexToUpdate].fieldValue = event.target.value;
+    }
     setFieldElements(newElements);
   };
 

@@ -52,6 +52,12 @@ export default function TaskFormFields() {
         fieldType: "text-long",
         fieldValue: "",
       },
+      {
+        fieldId: "reset",
+        fieldLabel: "Reset the form",
+        fieldType: "checkbox",
+        fieldValue: true,
+      },
     ],
   };
 }

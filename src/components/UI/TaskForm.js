@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormContext from "../Providers/FormContext";
 import TaskFormStyles from "./TaskFormStyles";
 
 export default function TaskForm({ fields, handleSubmit }) {
-  const { TextField } = TaskFormStyles();
+  const { TextField, FormControlLabel } = TaskFormStyles();
+
   const handleChange = useContext(FormContext);
+
+  const checkboxField = fields[fields.length - 1];
+
   const displayFields = fields.map((field) => {
     switch (field.fieldType) {
       case "text":
@@ -64,6 +69,17 @@ export default function TaskForm({ fields, handleSubmit }) {
       <Button variant="contained" color="primary" type="submit" size="large">
         Create
       </Button>
+      <FormControlLabel
+        control={
+          // eslint-disable-next-line react/jsx-wrap-multilines
+          <Checkbox
+            checked={checkboxField.fieldValue}
+            onChange={(event) => handleChange(checkboxField.fieldId, event)}
+            color="primary"
+          />
+        }
+        label={checkboxField.fieldLabel}
+      />
     </form>
   );
 }
