@@ -11,7 +11,7 @@ export default function TaskForm({ fields, handleSubmit }) {
 
   const handleChange = useContext(FormContext);
 
-  const displayFields = fields.map((field) => {
+  const displayFields = (field) => {
     switch (field.fieldType) {
       case "text":
         return (
@@ -86,9 +86,11 @@ export default function TaskForm({ fields, handleSubmit }) {
       default:
         return null;
     }
-  });
+  };
 
-  return <form onSubmit={(e) => handleSubmit(e)}>{displayFields}</form>;
+  return (
+    <form onSubmit={(e) => handleSubmit(e)}>{fields.map(displayFields)}</form>
+  );
 }
 
 TaskForm.propTypes = {
