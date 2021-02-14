@@ -27,7 +27,15 @@ function getLatestTaskId() {
 }
 
 function addTaskToDatabase(id, newTask) {
-  const { name, description, status, priority, sprint, release } = newTask;
+  const {
+    name,
+    description,
+    status,
+    priority,
+    sprint,
+    version,
+    release,
+  } = newTask;
   const dateCreated = dayjs().format();
 
   const params = {
@@ -40,6 +48,7 @@ function addTaskToDatabase(id, newTask) {
       status,
       priority,
       sprint,
+      version,
       release,
       dateCreated,
       dateUpdated: dateCreated,

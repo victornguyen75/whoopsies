@@ -35,6 +35,12 @@ export default function TaskFormFields() {
         fieldValue: "",
       },
       {
+        fieldId: "version",
+        fieldLabel: "Project Version",
+        fieldType: "text",
+        fieldValue: "",
+      },
+      {
         fieldId: "release",
         fieldLabel: "Release Date",
         fieldType: "text",
