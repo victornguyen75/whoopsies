@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 import NotificationStyles from "./NotificationStyles";
 
 export default function Notification({ text, show }) {
-  const { NotificationCard, BellIcon, ErrorIcon } = NotificationStyles();
-  const displayIcon = text.includes("Success") ? <BellIcon /> : <ErrorIcon />;
+  const { Alert } = NotificationStyles();
+  const severity = text.includes("Success") ? "success" : "error";
 
   return (
-    <NotificationCard show={show ? "true" : undefined}>
-      {displayIcon}
+    <Alert show={show ? "true" : undefined} severity={severity}>
       {text}
-    </NotificationCard>
+    </Alert>
   );
 }
 
