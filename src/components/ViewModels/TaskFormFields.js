@@ -59,7 +59,7 @@ export default function TaskFormFields() {
       },
       {
         fieldId: "reset",
-        fieldLabel: "Reset the form",
+        fieldLabel: "Reset the form after creating this task",
         fieldType: "checkbox",
         fieldValue: true,
       },
