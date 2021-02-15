@@ -8,9 +8,7 @@ export default function TaskCreationPageViewModel() {
   const {
     formLabel,
     fields,
-    tasks,
     fieldElements,
-    setTasks,
     setFieldElements,
   } = useTaskCreation();
   const {
@@ -32,7 +30,6 @@ export default function TaskCreationPageViewModel() {
     getLatestTaskId()
       .then((id) => addTaskToDatabase(id, newTask))
       .then(() => {
-        setTasks([...tasks, newTask]);
         toggleNotification("Successfully added the item!");
       })
       .catch((err) => {
