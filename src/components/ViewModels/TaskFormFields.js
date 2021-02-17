@@ -56,6 +56,7 @@ export default function TaskFormFields() {
         fieldId: "create",
         fieldLabel: "Create",
         fieldType: "button",
+        fieldValue: null,
       },
       {
         fieldId: "reset",
