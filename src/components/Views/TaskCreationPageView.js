@@ -7,7 +7,7 @@ import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 
 export default function TaskCreationPageView({ viewModel }) {
   return (
-    <>
+    <div data-testid="task-creation-page-view">
       <WhoopsiesHeader />
       <h2>{viewModel.formLabel}</h2>
       <Notification
@@ -20,7 +20,7 @@ export default function TaskCreationPageView({ viewModel }) {
           handleSubmit={viewModel.handleSubmit}
         />
       </FormContext.Provider>
-    </>
+    </div>
   );
 }
 
