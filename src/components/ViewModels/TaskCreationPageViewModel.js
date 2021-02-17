@@ -1,16 +1,10 @@
 import TaskModel from "../Models/TaskModel";
-import TaskFormFields from "./TaskFormFields";
 import useTaskCreation from "./CustomHooks/useTaskCreation";
 import useNotifications from "./CustomHooks/useNotifications";
 
 export default function TaskCreationPageViewModel() {
   const { getLatestTaskId, addTaskToDatabase } = TaskModel();
-  const {
-    formLabel,
-    fields,
-    fieldElements,
-    setFieldElements,
-  } = useTaskCreation();
+  const { formLabel, fieldElements, setFieldElements } = useTaskCreation();
   const {
     showNotification,
     notificationText,
@@ -21,9 +15,8 @@ export default function TaskCreationPageViewModel() {
     e.preventDefault();
 
     const newTask = {};
-    const willReset = fields[fields.length - 1].fieldValue;
 
-    fieldElements.fields.forEach((field) => {
+    fieldElements.forEach((field) => {
       Object.assign(newTask, { [field.fieldId]: field.fieldValue });
     });
 
@@ -35,29 +28,25 @@ export default function TaskCreationPageViewModel() {
       .catch((err) => {
         toggleNotification(err.toString());
       });
-
-    if (willReset) {
-      setFieldElements(TaskFormFields);
-    }
   };
 
   const handleChange = (id, event) => {
-    const newElements = { ...fieldElements };
-    const fieldIndexToUpdate = newElements.fields.findIndex(
+    const newElements = [...fieldElements];
+    const fieldIndexToUpdate = newElements.findIndex(
       (field) => id === field.fieldId
     );
 
     if (id === "reset") {
-      newElements.fields[fieldIndexToUpdate].fieldValue = event.target.checked;
+      newElements[fieldIndexToUpdate].fieldValue = event.target.checked;
     } else {
-      newElements.fields[fieldIndexToUpdate].fieldValue = event.target.value;
+      newElements[fieldIndexToUpdate].fieldValue = event.target.value;
     }
     setFieldElements(newElements);
   };
 
   return {
     formLabel,
-    fields,
+    fieldElements,
     showNotification,
     notificationText,
     handleSubmit,

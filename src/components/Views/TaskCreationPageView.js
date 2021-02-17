@@ -16,7 +16,7 @@ export default function TaskCreationPageView({ viewModel }) {
       />
       <FormContext.Provider value={viewModel.handleChange}>
         <TaskForm
-          fields={viewModel.fields}
+          fields={viewModel.fieldElements}
           handleSubmit={viewModel.handleSubmit}
         />
       </FormContext.Provider>
@@ -27,7 +27,7 @@ export default function TaskCreationPageView({ viewModel }) {
 TaskCreationPageView.propTypes = {
   viewModel: PropTypes.shape({
     formLabel: PropTypes.string,
-    fields: PropTypes.arrayOf(PropTypes.object),
+    fieldElements: PropTypes.arrayOf(PropTypes.object),
     showNotification: PropTypes.bool,
     notificationText: PropTypes.string,
     handleSubmit: PropTypes.func,
@@ -38,7 +38,7 @@ TaskCreationPageView.propTypes = {
 TaskCreationPageView.defaultProps = {
   viewModel: {
     formLabel: "",
-    fields: [],
+    fieldElements: [],
     showNotification: false,
     notificationText: "",
     handleSubmit: () => {},
