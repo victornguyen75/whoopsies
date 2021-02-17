@@ -4,6 +4,8 @@ import DashboardPageView from "./components/Views/DashboardPageView";
 import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewModel";
 import TaskCreationPageView from "./components/Views/TaskCreationPageView";
 import TaskCreationPageViewModel from "./components/ViewModels/TaskCreationPageViewModel";
+import InDevelopmentPageView from "./components/Views/InDevelopmentPageView";
+import InDevelopmentPageViewModel from "./components/ViewModels/InDevelopmentPageViewModel";
 import FormContext from "./components/Providers/FormContext";
 import Sidebar from "./components/UI/Sidebar";
 import AppStyles from "./AppStyles";
@@ -17,6 +19,7 @@ function App() {
 
   const dashboardPageViewModel = DashboardPageViewModel(render);
   const taskCreationPageViewModel = TaskCreationPageViewModel();
+  const inDevelopmentPageViewModel = InDevelopmentPageViewModel();
 
   const newTaskSubmission = (e) => {
     taskCreationPageViewModel.handleSubmit(e).then(() => setRender(!render));
@@ -33,6 +36,9 @@ function App() {
           <FormContext.Provider value={newTaskSubmission}>
             <TaskCreationPageView viewModel={taskCreationPageViewModel} />
           </FormContext.Provider>
+        </Route>
+        <Route path="*">
+          <InDevelopmentPageView viewModel={inDevelopmentPageViewModel} />
         </Route>
       </Content>
     </Router>

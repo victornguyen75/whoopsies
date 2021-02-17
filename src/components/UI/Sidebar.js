@@ -5,7 +5,12 @@ import ListItem from "@material-ui/core/ListItem";
 import SidebarStyles from "./SidebarStyles";
 
 export default function Sidebar() {
-  const { Drawer, DashboardIcon, CreateTaskIcon } = SidebarStyles();
+  const {
+    Drawer,
+    DashboardIcon,
+    CreateTaskIcon,
+    GeneralQuestionsIcon,
+  } = SidebarStyles();
   return (
     <Drawer variant="permanent">
       <List>
@@ -19,6 +24,12 @@ export default function Sidebar() {
           <Link to="/whoopsies/create-task">
             <CreateTaskIcon />
             Create Task
+          </Link>
+        </ListItem>
+        <ListItem button>
+          <Link to="/whoopsies/general-questions">
+            <GeneralQuestionsIcon />
+            General Questions
           </Link>
         </ListItem>
       </List>

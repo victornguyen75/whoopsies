@@ -1,6 +1,7 @@
 import DrawerUnstyled from "@material-ui/core/Drawer";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import QueueIcon from "@material-ui/icons/Queue";
+import HelpIcon from "@material-ui/icons/Help";
 import styled, { css } from "styled-components";
 
 const Drawer = styled(DrawerUnstyled)`
@@ -25,6 +26,10 @@ const CreateTaskIcon = styled(QueueIcon)`
   ${iconStyles}
 `;
 
+const GeneralQuestionsIcon = styled(HelpIcon)`
+  ${iconStyles}
+`;
+
 export default function SidebarStyles() {
-  return { Drawer, DashboardIcon, CreateTaskIcon };
+  return { Drawer, DashboardIcon, CreateTaskIcon, GeneralQuestionsIcon };
 }
