@@ -6,10 +6,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormContext from "../Providers/FormContext";
 import TaskFormStyles from "./TaskFormStyles";
 
-export default function TaskForm({ fields, handleSubmit }) {
+export default function TaskForm({ fields, handleChange }) {
   const { TextField, FormControlLabel } = TaskFormStyles();
 
-  const handleChange = useContext(FormContext);
+  const newTaskSubmission = useContext(FormContext);
 
   const displayFields = (field) => {
     switch (field.fieldType) {
@@ -89,16 +89,18 @@ export default function TaskForm({ fields, handleSubmit }) {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>{fields.map(displayFields)}</form>
+    <form onSubmit={(e) => newTaskSubmission(e)}>
+      {fields.map(displayFields)}
+    </form>
   );
 }
 
 TaskForm.propTypes = {
   fields: PropTypes.arrayOf(PropTypes.object),
-  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
 };
 
 TaskForm.defaultProps = {
   fields: [],
-  handleSubmit: () => {},
+  handleChange: () => {},
 };

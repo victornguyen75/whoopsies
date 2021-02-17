@@ -10,7 +10,7 @@ function prioritize(item1, item2) {
     : 1;
 }
 
-export default function DashboardPageViewModel() {
+export default function DashboardPageViewModel(rerender) {
   const { getTasksFromDatabase } = TaskModel();
   const { tasks, setTasks } = useTaskCreation();
   const {
@@ -30,7 +30,7 @@ export default function DashboardPageViewModel() {
       .catch((err) => {
         toggleNotification(err.toString());
       });
-  }, [getTasksFromDatabase, setTasks, toggleNotification]);
+  }, [rerender, getTasksFromDatabase, setTasks, toggleNotification]);
 
   return {
     tasks,

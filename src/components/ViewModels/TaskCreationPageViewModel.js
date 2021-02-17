@@ -11,7 +11,7 @@ export default function TaskCreationPageViewModel() {
     toggleNotification,
   } = useNotifications();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newTask = {};
@@ -20,14 +20,14 @@ export default function TaskCreationPageViewModel() {
       Object.assign(newTask, { [field.fieldId]: field.fieldValue });
     });
 
-    getLatestTaskId()
-      .then((id) => addTaskToDatabase(id, newTask))
-      .then(() => {
-        toggleNotification("Successfully added the item!");
-      })
-      .catch((err) => {
-        toggleNotification(err.toString());
-      });
+    try {
+      const id = await getLatestTaskId();
+      await addTaskToDatabase(id, newTask);
+      toggleNotification("Successfully added the item!");
+    } catch (err) {
+      toggleNotification(err.toString());
+    }
+    return Promise.resolve();
   };
 
   const handleChange = (id, event) => {
