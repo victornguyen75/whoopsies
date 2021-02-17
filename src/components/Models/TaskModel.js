@@ -20,7 +20,7 @@ function getLatestTaskId() {
   return new Promise((resolve, reject) => {
     docClient.scan(params, (err, data) => {
       return err
-        ? reject(new Error(`Unable to scan table. ${err}`))
+        ? reject(new Error(`Error: unable to scan table. ${err}`))
         : resolve(data.Count + 1);
     });
   });
@@ -57,7 +57,9 @@ function addTaskToDatabase(id, newTask) {
 
   return new Promise((resolve, reject) => {
     docClient.put(params, (err) => {
-      return err ? reject(new Error(`Unable to add item. ${err}`)) : resolve();
+      return err
+        ? reject(new Error(`Error: unable to add item. ${err}`))
+        : resolve();
     });
   });
 }
@@ -70,7 +72,7 @@ function getTasksFromDatabase() {
   return new Promise((resolve, reject) => {
     docClient.scan(params, (err, data) => {
       return err
-        ? reject(new Error(`Unable to scan table. ${err}`))
+        ? reject(new Error(`Error: unable to scan table. ${err}`))
         : resolve(data.Items);
     });
   });

@@ -29,7 +29,7 @@ export default function TaskCreationPageViewModel() {
     try {
       const id = await getLatestTaskId();
       await addTaskToDatabase(id, newTask);
-      toggleNotification("Successfully added the item!");
+      toggleNotification("Success: added the item!");
       if (willReset) {
         setFieldElements(resetFieldElements);
       }

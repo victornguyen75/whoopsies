@@ -25,7 +25,7 @@ export default function DashboardPageViewModel(rerender) {
         const prioritizedTasks = [...retrievedTasks].sort(prioritize);
 
         setTasks(prioritizedTasks);
-        toggleNotification("Successfully retrieved the tasks!");
+        toggleNotification("Success: retrieved the tasks!");
       })
       .catch((err) => {
         toggleNotification(err.toString());
