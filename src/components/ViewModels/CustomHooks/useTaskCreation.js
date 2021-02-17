@@ -8,6 +8,7 @@ export default function useTaskCreation() {
 
   return {
     formLabel,
+    resetFieldElements: TaskFormFields().fields,
     fieldElements,
     tasks,
     setFieldElements,

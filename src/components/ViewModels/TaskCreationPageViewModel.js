@@ -4,7 +4,12 @@ import useNotifications from "./CustomHooks/useNotifications";
 
 export default function TaskCreationPageViewModel() {
   const { getLatestTaskId, addTaskToDatabase } = TaskModel();
-  const { formLabel, fieldElements, setFieldElements } = useTaskCreation();
+  const {
+    formLabel,
+    resetFieldElements,
+    fieldElements,
+    setFieldElements,
+  } = useTaskCreation();
   const {
     showNotification,
     notificationText,
@@ -15,6 +20,7 @@ export default function TaskCreationPageViewModel() {
     e.preventDefault();
 
     const newTask = {};
+    const willReset = fieldElements[fieldElements.length - 1].fieldValue;
 
     fieldElements.forEach((field) => {
       Object.assign(newTask, { [field.fieldId]: field.fieldValue });
@@ -24,6 +30,9 @@ export default function TaskCreationPageViewModel() {
       const id = await getLatestTaskId();
       await addTaskToDatabase(id, newTask);
       toggleNotification("Successfully added the item!");
+      if (willReset) {
+        setFieldElements(resetFieldElements);
+      }
     } catch (err) {
       toggleNotification(err.toString());
     }
