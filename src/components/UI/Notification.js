@@ -4,7 +4,7 @@ import NotificationStyles from "./NotificationStyles";
 
 export default function Notification({ text, show }) {
   const { Alert } = NotificationStyles();
-  const severity = text.includes("Success") ? "success" : "error";
+  const severity = text.substr(0, text.indexOf(":")).toLowerCase() || "error";
 
   return (
     <Alert show={show ? "true" : undefined} severity={severity}>
@@ -19,6 +19,6 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-  text: "",
+  text: "Success",
   show: false,
 };
