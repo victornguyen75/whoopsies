@@ -26,7 +26,7 @@ export default function DashboardPageView({ viewModel }) {
     );
   });
   return (
-    <>
+    <div data-testid="dashboard-page-view">
       <WhoopsiesHeader />
       <Notification
         show={viewModel.showNotification}
@@ -41,7 +41,7 @@ export default function DashboardPageView({ viewModel }) {
       >
         {displayLists}
       </Grid>
-    </>
+    </div>
   );
 }
 
