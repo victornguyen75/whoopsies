@@ -10,6 +10,7 @@ export default function Sidebar() {
     DashboardIcon,
     CreateTaskIcon,
     GeneralQuestionsIcon,
+    LogoutIcon,
   } = SidebarStyles();
   return (
     <Drawer variant="permanent">
@@ -30,6 +31,12 @@ export default function Sidebar() {
           <Link to="/whoopsies/general-questions">
             <GeneralQuestionsIcon />
             General Questions
+          </Link>
+        </ListItem>
+        <ListItem button>
+          <Link to="/whoopsies/">
+            <LogoutIcon />
+            Logout
           </Link>
         </ListItem>
       </List>
