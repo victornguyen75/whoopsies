@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import DashboardPageView from "./components/Views/DashboardPageView";
 import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewModel";
 import TaskCreationPageView from "./components/Views/TaskCreationPageView";
@@ -29,17 +29,19 @@ function App() {
     <Router basename="/">
       <Sidebar />
       <Content>
-        <Route path="/whoopsies/dashboard">
-          <DashboardPageView viewModel={dashboardPageViewModel} />
-        </Route>
-        <Route path="/whoopsies/create-task">
-          <FormContext.Provider value={newTaskSubmission}>
-            <TaskCreationPageView viewModel={taskCreationPageViewModel} />
-          </FormContext.Provider>
-        </Route>
-        <Route path="*">
-          <InDevelopmentPageView viewModel={inDevelopmentPageViewModel} />
-        </Route>
+        <Switch>
+          <Route path="/whoopsies/dashboard">
+            <DashboardPageView viewModel={dashboardPageViewModel} />
+          </Route>
+          <Route path="/whoopsies/create-task">
+            <FormContext.Provider value={newTaskSubmission}>
+              <TaskCreationPageView viewModel={taskCreationPageViewModel} />
+            </FormContext.Provider>
+          </Route>
+          <Route path="*">
+            <InDevelopmentPageView viewModel={inDevelopmentPageViewModel} />
+          </Route>
+        </Switch>
       </Content>
     </Router>
   );
