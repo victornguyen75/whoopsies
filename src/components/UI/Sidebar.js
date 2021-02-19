@@ -12,6 +12,7 @@ export default function Sidebar() {
     GeneralQuestionsIcon,
     LogoutIcon,
   } = SidebarStyles();
+
   return (
     <Drawer variant="permanent">
       <List>
