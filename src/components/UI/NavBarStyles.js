@@ -36,6 +36,11 @@ const InputBase = styled(InputBaseUnstyled)`
 const Button = styled(ButtonUnstyled)`
   margin: 0 1em !important;
   background-color: white !important;
+
+  a {
+    text-decoration: inherit;
+    color: inherit;
+  }
 `;
 
 export default function NavBarStyles() {
