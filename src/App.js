@@ -7,11 +7,12 @@ import TaskCreationPageViewModel from "./components/ViewModels/TaskCreationPageV
 import InDevelopmentPageView from "./components/Views/InDevelopmentPageView";
 import InDevelopmentPageViewModel from "./components/ViewModels/InDevelopmentPageViewModel";
 import FormContext from "./components/Providers/FormContext";
+import NavBar from "./components/UI/NavBar";
 import Sidebar from "./components/UI/Sidebar";
 import AppStyles from "./AppStyles";
 
 function App() {
-  const { NavBar, SearchBox, SearchIcon, InputBase, Content } = AppStyles();
+  const { Content } = AppStyles();
 
   // The value of render does not matter;
   // I just want the effect hook to rerender the tasks in the Dashboard page
@@ -27,17 +28,8 @@ function App() {
 
   return (
     <Router basename="/">
+      <NavBar />
       <Sidebar />
-      <NavBar>
-        Whoopsies! An Issue Tracker for all your Oopsies!
-        <SearchBox>
-          <SearchIcon />
-          <InputBase
-            placeholder="Search by project"
-            inputProps={{ "aria-label": "search" }}
-          />
-        </SearchBox>
-      </NavBar>
       <Content>
         <Switch>
           <Route path="/whoopsies/dashboard">
