@@ -10,7 +10,5 @@ const Alert = styled(AlertUnstyled)`
 `;
 
 export default function NotificationStyles() {
-  return {
-    Alert,
-  };
+  return { Alert };
 }
