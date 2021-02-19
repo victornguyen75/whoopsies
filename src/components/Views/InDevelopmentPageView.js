@@ -5,10 +5,8 @@ import Notification from "../UI/Notification";
 export default function InDevelopmentPage({ viewModel }) {
   return (
     <>
-      <h1>
-        Whoopsies! Looks like you made an oopsy whoopsy! This page does not
-        exist yet. Sorry about that! 😅
-      </h1>
+      <h1>Whoopsies! Looks like you made an oopsy!</h1>
+      <p> This page does not exist yet. Sorry about that! 😅</p>
       <Notification
         show={viewModel.showNotification}
         text={viewModel.notificationText}
