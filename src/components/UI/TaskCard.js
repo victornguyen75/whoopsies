@@ -16,15 +16,17 @@ function getBriefName(taskName) {
   return arrayOfWords.splice(0, i).join(" ");
 }
 
-export default function TaskCard({ name }) {
+export default function TaskCard({ name, priority }) {
   const { Card } = TaskCardStyles();
-  return <Card>{getBriefName(name)}</Card>;
+  return <Card priority={priority}>{getBriefName(name)}</Card>;
 }
 
 TaskCard.propTypes = {
   name: PropTypes.string,
+  priority: PropTypes.string,
 };
 
 TaskCard.defaultProps = {
   name: "TBD",
+  priority: "Cosmetic",
 };

@@ -11,7 +11,7 @@ export default function TaskList({ header, tasks }) {
     <List>
       <b>{fullHeader}</b>
       {tasks.map((task) => (
-        <TaskCard key={task.id} name={task.name} />
+        <TaskCard key={task.id} name={task.name} priority={task.priority} />
       ))}
     </List>
   );
