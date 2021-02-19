@@ -11,7 +11,7 @@ import Sidebar from "./components/UI/Sidebar";
 import AppStyles from "./AppStyles";
 
 function App() {
-  const { Content } = AppStyles();
+  const { NavBar, SearchBox, SearchIcon, InputBase, Content } = AppStyles();
 
   // The value of render does not matter;
   // I just want the effect hook to rerender the tasks in the Dashboard page
@@ -28,6 +28,16 @@ function App() {
   return (
     <Router basename="/">
       <Sidebar />
+      <NavBar>
+        Whoopsies! An Issue Tracker for all your Oopsies!
+        <SearchBox>
+          <SearchIcon />
+          <InputBase
+            placeholder="Search by project"
+            inputProps={{ "aria-label": "search" }}
+          />
+        </SearchBox>
+      </NavBar>
       <Content>
         <Switch>
           <Route path="/whoopsies/dashboard">
