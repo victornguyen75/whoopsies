@@ -7,12 +7,13 @@ import TaskCreationPageViewModel from "./components/ViewModels/TaskCreationPageV
 import InDevelopmentPageView from "./components/Views/InDevelopmentPageView";
 import InDevelopmentPageViewModel from "./components/ViewModels/InDevelopmentPageViewModel";
 import FormContext from "./components/Providers/FormContext";
+import ThemeContext from "./components/Providers/ThemeContext";
 import NavBar from "./components/UI/NavBar";
 import Sidebar from "./components/UI/Sidebar";
 import AppStyles from "./AppStyles";
 
 function App() {
-  const { NAVBAR_HEIGHT, SIDEBAR_WIDTH, Content } = AppStyles();
+  const { theme, Content } = AppStyles();
 
   // The value of render does not matter;
   // I just want the effect hook to rerender the tasks in the Dashboard page
@@ -28,7 +29,9 @@ function App() {
 
   return (
     <Router basename="/">
-      <NavBar NAVBAR_HEIGHT={NAVBAR_HEIGHT} SIDEBAR_WIDTH={SIDEBAR_WIDTH} />
+      <ThemeContext.Provider value={theme}>
+        <NavBar />
+      </ThemeContext.Provider>
       <Sidebar />
       <Content>
         <Switch>

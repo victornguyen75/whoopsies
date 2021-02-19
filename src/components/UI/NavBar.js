@@ -1,12 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import Assignment from "@material-ui/icons/Assignment";
+import ThemeContext from "../Providers/ThemeContext";
 import NavBarStyles from "./NavBarStyles";
 
-export default function NavBar({ NAVBAR_HEIGHT, SIDEBAR_WIDTH }) {
+export default function NavBar() {
   const { AppBar, SearchBox, SearchIcon, InputBase, Button } = NavBarStyles();
+  const theme = useContext(ThemeContext);
+
   return (
-    <AppBar NAVBAR_HEIGHT={NAVBAR_HEIGHT} SIDEBAR_WIDTH={SIDEBAR_WIDTH}>
+    <AppBar sidebarwidth={theme.SIDEBAR_WIDTH}>
       Whoopsies!
       <Button variant="outlined" color="primary" startIcon={<Assignment />}>
         <a
@@ -27,13 +29,3 @@ export default function NavBar({ NAVBAR_HEIGHT, SIDEBAR_WIDTH }) {
     </AppBar>
   );
 }
-
-NavBar.propTypes = {
-  NAVBAR_HEIGHT: PropTypes.number,
-  SIDEBAR_WIDTH: PropTypes.number,
-};
-
-NavBar.defaultProps = {
-  NAVBAR_HEIGHT: 0,
-  SIDEBAR_WIDTH: 0,
-};

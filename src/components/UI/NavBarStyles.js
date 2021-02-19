@@ -10,7 +10,7 @@ const INPUT_BASE_LEFT_MARGIN = 2;
 const AppBar = styled(AppBarUnstyled)`
   display: block !important;
   padding: 0.5em 0 0.5em
-    ${({ SIDEBAR_WIDTH }) => (SIDEBAR_WIDTH + 0.5).toString()}em;
+    ${({ sidebarwidth }) => (sidebarwidth + 0.5).toString()}em;
 `;
 
 const SearchBox = styled.div`
