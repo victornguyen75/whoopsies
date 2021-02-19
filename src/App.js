@@ -12,7 +12,7 @@ import Sidebar from "./components/UI/Sidebar";
 import AppStyles from "./AppStyles";
 
 function App() {
-  const { Content } = AppStyles();
+  const { NAVBAR_HEIGHT, SIDEBAR_WIDTH, Content } = AppStyles();
 
   // The value of render does not matter;
   // I just want the effect hook to rerender the tasks in the Dashboard page
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <Router basename="/">
-      <NavBar />
+      <NavBar NAVBAR_HEIGHT={NAVBAR_HEIGHT} SIDEBAR_WIDTH={SIDEBAR_WIDTH} />
       <Sidebar />
       <Content>
         <Switch>

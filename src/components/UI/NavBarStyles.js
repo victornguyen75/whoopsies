@@ -4,9 +4,13 @@ import InputBaseUnstyled from "@material-ui/core/InputBase";
 import ButtonUnstyled from "@material-ui/core/Button";
 import styled from "styled-components";
 
+const SEARCH_BOX_WIDTH = 20;
+const INPUT_BASE_LEFT_MARGIN = 2;
+
 const AppBar = styled(AppBarUnstyled)`
   display: block !important;
-  padding: 0.5em 0 0.5em 12.5em;
+  padding: 0.5em 0 0.5em
+    ${({ SIDEBAR_WIDTH }) => (SIDEBAR_WIDTH + 0.5).toString()}em;
 `;
 
 const SearchBox = styled.div`
@@ -16,7 +20,7 @@ const SearchBox = styled.div`
     background-color: #6f7dc8;
   }
   border-radius: 7px;
-  width: 20em;
+  width: ${SEARCH_BOX_WIDTH.toString()}em;
 `;
 
 const SearchIcon = styled(SearchIconUnstyled)`
@@ -25,8 +29,8 @@ const SearchIcon = styled(SearchIconUnstyled)`
 `;
 
 const InputBase = styled(InputBaseUnstyled)`
-  width: 18em;
-  margin-left: 2em;
+  margin-left: ${INPUT_BASE_LEFT_MARGIN.toString()}em;
+  width: ${(SEARCH_BOX_WIDTH - INPUT_BASE_LEFT_MARGIN).toString()}em;
 `;
 
 const Button = styled(ButtonUnstyled)`
