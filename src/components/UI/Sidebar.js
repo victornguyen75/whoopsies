@@ -16,30 +16,30 @@ export default function Sidebar() {
   return (
     <Drawer variant="permanent">
       <List>
-        <ListItem button>
-          <Link to="/whoopsies/dashboard">
+        <Link to="/whoopsies/dashboard">
+          <ListItem button>
             <DashboardIcon />
             Dashboard
-          </Link>
-        </ListItem>
-        <ListItem button>
-          <Link to="/whoopsies/create-task">
+          </ListItem>
+        </Link>
+        <Link to="/whoopsies/create-task">
+          <ListItem button>
             <CreateTaskIcon />
             Create Task
-          </Link>
-        </ListItem>
-        <ListItem button>
-          <Link to="/whoopsies/general-questions">
+          </ListItem>
+        </Link>
+        <Link to="/whoopsies/general-questions">
+          <ListItem button>
             <GeneralQuestionsIcon />
             General Questions
-          </Link>
-        </ListItem>
-        <ListItem button>
-          <Link to="/whoopsies/">
+          </ListItem>
+        </Link>
+        <Link to="/whoopsies/">
+          <ListItem button>
             <LogoutIcon />
             Logout
-          </Link>
-        </ListItem>
+          </ListItem>
+        </Link>
       </List>
     </Drawer>
   );
