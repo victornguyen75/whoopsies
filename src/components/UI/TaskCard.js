@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import ThemeContext from "../Providers/ThemeContext";
 import TaskCardStyles from "./TaskCardStyles";
 
 function getBriefName(taskName) {
@@ -19,13 +18,8 @@ function getBriefName(taskName) {
 
 export default function TaskCard({ name, priority }) {
   const { Card } = TaskCardStyles();
-  const theme = useContext(ThemeContext);
 
-  return (
-    <Card priority={priority} colors={theme.PRIORITY_COLORS}>
-      {getBriefName(name)}
-    </Card>
-  );
+  return <Card priority={priority}>{getBriefName(name)}</Card>;
 }
 
 TaskCard.propTypes = {

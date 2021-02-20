@@ -2,8 +2,20 @@ import CardUnstyled from "@material-ui/core/Card";
 import styled from "styled-components";
 
 function getPriorityColor(props) {
-  const taskColorValues = props.colors[props.priority];
-  return `rgba(${taskColorValues.r}, ${taskColorValues.g}, ${taskColorValues.b}, 1)`;
+  switch (props.priority) {
+    case "Cosmetic":
+      return "#E4E4E4";
+    case "Low":
+      return "#C1E1C1";
+    case "Medium":
+      return "#FDFD96";
+    case "High":
+      return "#FFB347";
+    case "Showstopper":
+      return "#FF6961";
+    default:
+      return "#E4E4E4";
+  }
 }
 
 const Card = styled(CardUnstyled)`
