@@ -15,16 +15,6 @@ export default function DashboardPageView({ viewModel }) {
     "DONE",
   ];
 
-  const displayLists = STATUSES.map((status) => {
-    const tasksOrganizedByStatus = viewModel.tasks.filter(
-      (task) => status === task.status
-    );
-    return (
-      <Grid key={status} item>
-        <TaskList header={status} tasks={tasksOrganizedByStatus} />
-      </Grid>
-    );
-  });
   return (
     <div data-testid="dashboard-page-view">
       <WhoopsiesHeader />
@@ -39,7 +29,16 @@ export default function DashboardPageView({ viewModel }) {
         alignItems="flex-start"
         spacing={2}
       >
-        {displayLists}
+        {STATUSES.map((status) => {
+          const tasksOrganizedByStatus = viewModel.tasks.filter(
+            (task) => status === task.status
+          );
+          return (
+            <Grid key={status} item>
+              <TaskList header={status} tasks={tasksOrganizedByStatus} />
+            </Grid>
+          );
+        })}
       </Grid>
     </div>
   );
