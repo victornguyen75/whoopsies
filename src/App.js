@@ -31,23 +31,23 @@ function App() {
     <Router basename="/">
       <ThemeContext.Provider value={theme}>
         <NavBar />
+        <Sidebar />
+        <Content>
+          <Switch>
+            <Route path="/whoopsies/dashboard">
+              <DashboardPageView viewModel={dashboardPageViewModel} />
+            </Route>
+            <Route path="/whoopsies/create-task">
+              <FormContext.Provider value={newTaskSubmission}>
+                <TaskCreationPageView viewModel={taskCreationPageViewModel} />
+              </FormContext.Provider>
+            </Route>
+            <Route path="*">
+              <InDevelopmentPageView viewModel={inDevelopmentPageViewModel} />
+            </Route>
+          </Switch>
+        </Content>
       </ThemeContext.Provider>
-      <Sidebar />
-      <Content>
-        <Switch>
-          <Route path="/whoopsies/dashboard">
-            <DashboardPageView viewModel={dashboardPageViewModel} />
-          </Route>
-          <Route path="/whoopsies/create-task">
-            <FormContext.Provider value={newTaskSubmission}>
-              <TaskCreationPageView viewModel={taskCreationPageViewModel} />
-            </FormContext.Provider>
-          </Route>
-          <Route path="*">
-            <InDevelopmentPageView viewModel={inDevelopmentPageViewModel} />
-          </Route>
-        </Switch>
-      </Content>
     </Router>
   );
 }
