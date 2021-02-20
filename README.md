@@ -9,9 +9,14 @@ This project is a work in progress. Here is a link to the [Software Requirement 
 1. Clone the project with `git clone https://github.com/victornguyen75/whoopsies.git` in the terminal
 2. Install dependencies with `yarn install` or `npm install`
 3. Start the server with `yarn start` or `npm start`
-4. Open a browser tab with `http://localhost:3000/whoopsies/#/create-task` to see the application
+4. Open a browser tab with `http://localhost:3000/whoopsies/create-task` to see the application
 
 ## Notes for Running the Application
 
-- This frontend application is not connected to AWS DynamoDB, so none of the tasks created will appear on either the frontend or backend.
-- Future development of this project will move the database querying logic to an AWS Lambda. Once that is complete, the GitHub Pages demo will be able to query the backend.
+### Local Hosting
+
+- Since this GitHub repository does not have my AWS keys, this frontend application can not connect to the AWS DynamoDB. Therefore, hosting the application locally will not allow the user to create and save tasks. However, the user can still look at the pages of this application.
+
+### GitHub Pages
+
+- The situation here is similar to the above. Another note is that the refreshing the application on the Dashboard page or the Task Creation Page will lead to a 404 file not found error.

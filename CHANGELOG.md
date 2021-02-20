@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2021-02-19
+
+### Added
+
+- Status options and priority options for the Task Creation form
+- Version field to the Task Creation form
+- Checkbox to reset the Task Creation form fields
+- Sidebar routing
+- YAML file for GitHub Actions to run CI/CD
+- Filter tasks based on the status of the task
+- Automate the Task ID creation
+- Font family
+- Functionality to update the dashboard automatically upon creating a new task without the need to refresh the page
+- "General Questions" and "Logout" tabs on the sidebar; no functionality for now
+- In Development Page as a fallback, if users access a route that does not exist yet
+- NavBar component with a search box
+
+### Refactored
+
+- DayJS to replace MomentJS
+- Styling of Material-UI components with styled-components
+- Notification component
+- Behavior Driven Development (BDD) unit testing the View components, instead of the ViewModel components
+- Whoopsies Header component
+
+### Fixed
+
+- Sidebar tab bug; clicking at the edge of the Sidebar options will now redirect the user to the page as expected
+
 ## [1.0.0] - 2021-02-04
 
 ### Added
