@@ -4,14 +4,14 @@ import Notification from "../UI/Notification";
 
 export default function InDevelopmentPage({ viewModel }) {
   return (
-    <>
+    <div data-testid="in-development-page-view">
       <h1>Whoopsies! Looks like you made an oopsy!</h1>
       <p> This page does not exist yet. Sorry about that! 😅</p>
       <Notification
         show={viewModel.showNotification}
         text={viewModel.notificationText}
       />
-    </>
+    </div>
   );
 }
 
