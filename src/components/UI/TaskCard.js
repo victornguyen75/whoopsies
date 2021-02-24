@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import TaskCardStyles from "./TaskCardStyles";
 
 function getBriefName(taskName) {
@@ -19,7 +20,12 @@ function getBriefName(taskName) {
 export default function TaskCard({ name, priority }) {
   const { Card } = TaskCardStyles();
 
-  return <Card priority={priority}>{getBriefName(name)}</Card>;
+  return (
+    <Card priority={priority}>
+      {getBriefName(name)}
+      <VisibilityIcon />
+    </Card>
+  );
 }
 
 TaskCard.propTypes = {

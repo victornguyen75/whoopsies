@@ -19,9 +19,24 @@ function getPriorityColor(props) {
 }
 
 const Card = styled(CardUnstyled)`
+  display: grid;
+  grid-template-columns: 85% 15%;
   margin: 10px;
   padding: 10px;
   background-color: ${(props) => getPriorityColor(props)} !important;
+
+  svg {
+    visibility: hidden;
+    float: right;
+  }
+
+  :hover svg {
+    visibility: visible;
+    float: right;
+    position: relative;
+    top: -3px;
+    right: -8px;
+  }
 `;
 
 export default function TaskCardStyles() {
