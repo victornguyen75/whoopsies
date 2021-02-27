@@ -18,7 +18,16 @@ const Modal = styled(ModalUnstyled)`
     }
   }
 
-  #modal-buttons {
+  #edit {
+    text-decoration: inherit;
+    color: inherit;
+  }
+
+  #delete {
+    cursor: pointer;
+  }
+
+  .modal-buttons {
     display: flex;
     justify-content: center;
   }

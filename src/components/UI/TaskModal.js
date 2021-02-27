@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import EditIcon from "@material-ui/icons/Edit";
@@ -28,8 +29,10 @@ export default function TaskModal(props) {
             <h2 id="modal-title">{modalFields.name}</h2>
           </Grid>
           <Grid item xs={1}>
-            <EditIcon />
-            <DeleteIcon />
+            <Link to="/whoopsies/edit-task" id="edit">
+              <EditIcon />
+            </Link>
+            <DeleteIcon id="delete" />
           </Grid>
         </Grid>
 
@@ -54,7 +57,7 @@ export default function TaskModal(props) {
           {`Release: `}
           {modalFields.release}
         </p>
-        <div id="modal-buttons">
+        <div className="modal-buttons">
           <Button
             variant="contained"
             color="primary"
