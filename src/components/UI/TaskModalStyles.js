@@ -26,13 +26,13 @@ const Modal = styled(ModalUnstyled)`
   #delete {
     cursor: pointer;
   }
+`;
 
-  .modal-buttons {
-    display: flex;
-    justify-content: center;
-  }
+const ModalButtons = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export default function TaskModalStyles() {
-  return { Modal };
+  return { Modal, ModalButtons };
 }

@@ -20,7 +20,7 @@ const displayFields = (field, values) => {
 
 export default function TaskModal(props) {
   const { open, toggleModal, fields, values } = props;
-  const { Modal } = TaskModalStyles();
+  const { Modal, ModalButtons } = TaskModalStyles();
   return (
     <Modal
       open={open}
@@ -49,7 +49,7 @@ export default function TaskModal(props) {
 
         {fields.map((field) => displayFields(field, values))}
 
-        <div className="modal-buttons">
+        <ModalButtons>
           <Button
             variant="contained"
             color="primary"
@@ -59,7 +59,7 @@ export default function TaskModal(props) {
           >
             Close
           </Button>
-        </div>
+        </ModalButtons>
       </div>
     </Modal>
   );

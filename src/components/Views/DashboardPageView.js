@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Grid from "@material-ui/core/Grid";
 import TaskList from "../UI/TaskList";
 import Notification from "../UI/Notification";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 import TaskModal from "../UI/TaskModal";
-import DashboardPageViewStyles from "./DashboardPageViewStyles";
 
 export default function DashboardPageView({ viewModel }) {
-  const { Grid } = DashboardPageViewStyles();
-
   const STATUSES = [
     "TO DO",
     "IN ANALYSIS",
