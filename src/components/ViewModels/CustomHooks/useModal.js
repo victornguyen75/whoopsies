@@ -2,16 +2,16 @@ import { useState } from "react";
 
 export default function useModal() {
   const [openModal, setOpenModal] = useState(false);
-  const [modalFields, setModalFields] = useState({});
+  const [taskValues, setTaskValues] = useState({});
 
   const toggleModal = (task) => {
-    setModalFields(task);
+    setTaskValues(task);
     setOpenModal(!openModal);
   };
 
   return {
     openModal,
-    modalFields,
+    taskValues,
     toggleModal,
   };
 }

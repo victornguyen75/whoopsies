@@ -27,7 +27,8 @@ export default function DashboardPageView({ viewModel }) {
       <TaskModal
         open={viewModel.openModal}
         toggleModal={viewModel.toggleModal}
-        modalFields={viewModel.modalFields}
+        fields={viewModel.fieldElements}
+        values={viewModel.taskValues}
       />
       <Grid
         container
@@ -58,10 +59,11 @@ export default function DashboardPageView({ viewModel }) {
 DashboardPageView.propTypes = {
   viewModel: PropTypes.shape({
     tasks: PropTypes.arrayOf(PropTypes.object),
+    fieldElements: PropTypes.arrayOf(PropTypes.object),
     showNotification: PropTypes.bool,
     notificationText: PropTypes.string,
     openModal: PropTypes.bool,
-    modalFields: PropTypes.shape({
+    taskValues: PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string,
       description: PropTypes.string,
@@ -78,10 +80,11 @@ DashboardPageView.propTypes = {
 DashboardPageView.defaultProps = {
   viewModel: {
     tasks: [],
+    fieldElements: [],
     showNotification: false,
     notificationText: "",
     openModal: false,
-    modalFields: {},
+    taskValues: {},
     toggleModal: () => {},
   },
 };

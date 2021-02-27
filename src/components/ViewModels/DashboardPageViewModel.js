@@ -13,13 +13,13 @@ function prioritize(item1, item2) {
 
 export default function DashboardPageViewModel(rerender) {
   const { getTasksFromDatabase } = TaskModel();
-  const { tasks, setTasks } = useTaskCreation();
+  const { tasks, fieldElements, setTasks } = useTaskCreation();
   const {
     showNotification,
     notificationText,
     toggleNotification,
   } = useNotifications();
-  const { openModal, modalFields, toggleModal } = useModal();
+  const { openModal, taskValues, toggleModal } = useModal();
 
   useEffect(() => {
     getTasksFromDatabase()
@@ -36,10 +36,11 @@ export default function DashboardPageViewModel(rerender) {
 
   return {
     tasks,
+    fieldElements,
     showNotification,
     notificationText,
     openModal,
-    modalFields,
+    taskValues,
     toggleModal,
   };
 }

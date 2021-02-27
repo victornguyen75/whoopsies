@@ -7,8 +7,19 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TaskModalStyles from "./TaskModalStyles";
 
+const displayFields = (field, values) => {
+  if (["text", "text-long", "select"].includes(field.fieldType) && values.id) {
+    return (
+      <p key={field.fieldId}>
+        {`${field.fieldLabel}: ${values[`${field.fieldId}`]}`}
+      </p>
+    );
+  }
+  return null;
+};
+
 export default function TaskModal(props) {
-  const { open, toggleModal, modalFields } = props;
+  const { open, toggleModal, fields, values } = props;
   const { Modal } = TaskModalStyles();
   return (
     <Modal
@@ -26,7 +37,7 @@ export default function TaskModal(props) {
           spacing={2}
         >
           <Grid item xs={11}>
-            <h2 id="modal-title">{modalFields.name}</h2>
+            <h2 id="modal-title">{values.name}</h2>
           </Grid>
           <Grid item xs={1}>
             <Link to="/whoopsies/edit-task" id="edit">
@@ -36,27 +47,8 @@ export default function TaskModal(props) {
           </Grid>
         </Grid>
 
-        <p id="modal-description">{modalFields.description}</p>
-        <p>
-          {`Status: `}
-          {modalFields.status}
-        </p>
-        <p>
-          {`Priority: `}
-          {modalFields.priority}
-        </p>
-        <p>
-          {`Sprint: `}
-          {modalFields.sprint}
-        </p>
-        <p>
-          {`Version: `}
-          {modalFields.version}
-        </p>
-        <p>
-          {`Release: `}
-          {modalFields.release}
-        </p>
+        {fields.map((field) => displayFields(field, values))}
+
         <div className="modal-buttons">
           <Button
             variant="contained"
@@ -75,7 +67,8 @@ export default function TaskModal(props) {
 
 TaskModal.propTypes = {
   open: PropTypes.bool,
-  modalFields: PropTypes.shape({
+  fields: PropTypes.arrayOf(PropTypes.object),
+  values: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     description: PropTypes.string,
@@ -90,6 +83,7 @@ TaskModal.propTypes = {
 
 TaskModal.defaultProps = {
   open: false,
-  modalFields: {},
+  fields: [],
+  values: {},
   toggleModal: () => {},
 };
