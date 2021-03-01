@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import TaskModel from "../Models/TaskModel";
 import useTaskCreation from "./CustomHooks/useTaskCreation";
 import useNotifications from "./CustomHooks/useNotifications";
+import useModal from "./CustomHooks/useModal";
 
 function prioritize(item1, item2) {
   const priorities = ["Cosmetic", "Low", "Medium", "High", "Showstopper"];
@@ -12,12 +13,13 @@ function prioritize(item1, item2) {
 
 export default function DashboardPageViewModel(rerender) {
   const { getTasksFromDatabase } = TaskModel();
-  const { tasks, setTasks } = useTaskCreation();
+  const { tasks, fieldElements, setTasks } = useTaskCreation();
   const {
     showNotification,
     notificationText,
     toggleNotification,
   } = useNotifications();
+  const { openModal, taskValues, toggleModal } = useModal();
 
   useEffect(() => {
     getTasksFromDatabase()
@@ -34,7 +36,11 @@ export default function DashboardPageViewModel(rerender) {
 
   return {
     tasks,
+    fieldElements,
     showNotification,
     notificationText,
+    openModal,
+    taskValues,
+    toggleModal,
   };
 }

@@ -26,16 +26,16 @@ const Card = styled(CardUnstyled)`
   background-color: ${(props) => getPriorityColor(props)} !important;
 
   svg {
-    visibility: hidden;
-    float: right;
-  }
-
-  :hover svg {
-    visibility: visible;
+    opacity: 0;
     float: right;
     position: relative;
     top: -3px;
     right: -8px;
+    transition: 0.5s ease;
+  }
+
+  :hover svg {
+    opacity: 1;
   }
 `;
 

@@ -9,7 +9,7 @@ export default function NavBar() {
 
   return (
     <AppBar sidebarwidth={theme.SIDEBAR_WIDTH}>
-      Whoopsies!
+      <b>Whoopsies!</b>
       <Button variant="outlined" color="primary" startIcon={<Assignment />}>
         <a
           href="https://docs.google.com/document/d/1FgaHyxg0d-MKl4OlfG0u36fmp6jM5nZxvI3ZeXUq4vs/edit?usp=sharing"
