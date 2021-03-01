@@ -21,6 +21,7 @@ const displayFields = (field, values) => {
 export default function TaskModal(props) {
   const { open, toggleModal, fields, values } = props;
   const { Modal, ModalButtons } = TaskModalStyles();
+
   return (
     <Modal
       open={open}
