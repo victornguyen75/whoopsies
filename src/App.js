@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TaskModel from "./components/Models/TaskModel";
 import DashboardPageView from "./components/Views/DashboardPageView";
@@ -16,12 +16,20 @@ import Sidebar from "./components/UI/Sidebar";
 import Notification from "./components/UI/Notification";
 import AppStyles from "./AppStyles";
 
+function prioritize(item1, item2) {
+  const priorities = ["Cosmetic", "Low", "Medium", "High", "Showstopper"];
+  return priorities.indexOf(item1.priority) > priorities.indexOf(item2.priority)
+    ? -1
+    : 1;
+}
+
 function App() {
   const { theme, Content } = AppStyles();
   const {
     getLatestTaskId,
     addTaskToDatabase,
     deleteTaskFromDatebase,
+    getTasksFromDatabase,
   } = TaskModel();
 
   const {
@@ -30,11 +38,29 @@ function App() {
     toggleNotification,
   } = useNotifications();
 
-  const { resetFieldElements, setFieldElements } = useTaskCreation();
+  const {
+    tasks,
+    resetFieldElements,
+    setFieldElements,
+    setTasks,
+  } = useTaskCreation();
 
   // The value of render does not matter;
   // I just want the effect hook to rerender the tasks in the Dashboard page
   const [render, setRender] = useState(true);
+
+  useEffect(() => {
+    getTasksFromDatabase()
+      .then((retrievedTasks) => {
+        const prioritizedTasks = [...retrievedTasks].sort(prioritize);
+
+        setTasks(prioritizedTasks);
+        toggleNotification("Success: retrieved the tasks!");
+      })
+      .catch((err) => {
+        toggleNotification(err.toString());
+      });
+  }, [render, getTasksFromDatabase, setTasks, toggleNotification]);
 
   const addTask = async (e, fields) => {
     e.preventDefault();
@@ -74,7 +100,8 @@ function App() {
           <Switch>
             <Route path="/whoopsies/dashboard">
               <DashboardPageView
-                viewModel={DashboardPageViewModel(render)}
+                viewModel={DashboardPageViewModel()}
+                tasks={tasks}
                 deleteTask={deleteTask}
               />
             </Route>

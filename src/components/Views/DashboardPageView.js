@@ -2,11 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import TaskList from "../UI/TaskList";
-import Notification from "../UI/Notification";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 import TaskModal from "../UI/TaskModal";
 
-export default function DashboardPageView({ viewModel, deleteTask }) {
+export default function DashboardPageView({ viewModel, tasks, deleteTask }) {
   const STATUSES = [
     "TO DO",
     "IN ANALYSIS",
@@ -18,10 +17,6 @@ export default function DashboardPageView({ viewModel, deleteTask }) {
   return (
     <div data-testid="dashboard-page-view">
       <WhoopsiesHeader />
-      <Notification
-        show={viewModel.showNotification}
-        text={viewModel.notificationText}
-      />
       <TaskModal
         open={viewModel.openModal}
         toggleModal={viewModel.toggleModal}
@@ -37,7 +32,7 @@ export default function DashboardPageView({ viewModel, deleteTask }) {
         spacing={2}
       >
         {STATUSES.map((status) => {
-          const tasksOrganizedByStatus = viewModel.tasks.filter(
+          const tasksOrganizedByStatus = tasks.filter(
             (task) => status === task.status
           );
           return (
@@ -57,10 +52,7 @@ export default function DashboardPageView({ viewModel, deleteTask }) {
 
 DashboardPageView.propTypes = {
   viewModel: PropTypes.shape({
-    tasks: PropTypes.arrayOf(PropTypes.object),
     fieldElements: PropTypes.arrayOf(PropTypes.object),
-    showNotification: PropTypes.bool,
-    notificationText: PropTypes.string,
     openModal: PropTypes.bool,
     taskValues: PropTypes.shape({
       id: PropTypes.number,
@@ -74,18 +66,17 @@ DashboardPageView.propTypes = {
     }),
     toggleModal: PropTypes.func,
   }),
+  tasks: PropTypes.arrayOf(PropTypes.object),
   deleteTask: PropTypes.func,
 };
 
 DashboardPageView.defaultProps = {
   viewModel: {
-    tasks: [],
     fieldElements: [],
-    showNotification: false,
-    notificationText: "",
     openModal: false,
     taskValues: {},
     toggleModal: () => {},
   },
+  tasks: [],
   deleteTask: () => {},
 };
