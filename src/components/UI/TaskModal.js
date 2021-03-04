@@ -46,9 +46,9 @@ export default function TaskModal(props) {
             </Link>
             <DeleteIcon
               id="delete"
-              onClick={() => {
+              onClick={(e) => {
                 deleteTask(values.id);
-                toggleModal();
+                toggleModal(e);
               }}
             />
           </Grid>

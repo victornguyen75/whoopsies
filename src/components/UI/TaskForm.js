@@ -9,7 +9,7 @@ import TaskFormStyles from "./TaskFormStyles";
 export default function TaskForm({ fields, handleChange }) {
   const { TextField, FormControlLabel } = TaskFormStyles();
 
-  const newTaskSubmission = useContext(FormContext);
+  const addTask = useContext(FormContext);
 
   const displayFields = (field) => {
     switch (field.fieldType) {
@@ -89,7 +89,7 @@ export default function TaskForm({ fields, handleChange }) {
   };
 
   return (
-    <form onSubmit={(e) => newTaskSubmission(e)}>
+    <form onSubmit={(e) => addTask(e, fields)}>
       {fields.map(displayFields)}
     </form>
   );
