@@ -19,9 +19,17 @@ function getLatestTaskId() {
 
   return new Promise((resolve, reject) => {
     docClient.scan(params, (err, data) => {
+      let taskId = 0;
+
+      data.Items.forEach((item) => {
+        if (item.id > taskId) {
+          taskId = item.id;
+        }
+      });
+
       return err
         ? reject(new Error(`Error: unable to scan table. ${err}`))
-        : resolve(data.Count + 1);
+        : resolve(taskId + 1);
     });
   });
 }
