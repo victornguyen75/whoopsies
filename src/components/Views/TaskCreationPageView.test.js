@@ -33,20 +33,4 @@ describe("TaskCreationPageView", () => {
     expect(textOfDOM).to.have.string("Sample Form");
     expect(textOfDOM).to.have.string("Sample Field");
   });
-
-  it("shows the success notification", () => {
-    const { getByTestId } = render(
-      <TaskCreationPageView viewModel={{ notificationText: "Success!" }} />
-    );
-    const textOfDOM = getByTestId("task-creation-page-view").textContent;
-    expect(textOfDOM).to.have.string("Success!");
-  });
-
-  it("shows the error notification", () => {
-    const { getByTestId } = render(
-      <TaskCreationPageView viewModel={{ notificationText: "Error!" }} />
-    );
-    const textOfDOM = getByTestId("task-creation-page-view").textContent;
-    expect(textOfDOM).to.have.string("Error!");
-  });
 });
