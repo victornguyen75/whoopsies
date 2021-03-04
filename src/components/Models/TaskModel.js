@@ -78,6 +78,29 @@ function getTasksFromDatabase() {
   });
 }
 
+function deleteTaskFromDatebase(id) {
+  const params = {
+    TableName: table,
+    Key: {
+      project,
+      id,
+    },
+  };
+
+  return new Promise((resolve, reject) => {
+    docClient.delete(params, (err) => {
+      return err
+        ? reject(new Error(`Error: unable to delete item. ${err}`))
+        : resolve();
+    });
+  });
+}
+
 export default function TaskModel() {
-  return { getLatestTaskId, addTaskToDatabase, getTasksFromDatabase };
+  return {
+    getLatestTaskId,
+    addTaskToDatabase,
+    getTasksFromDatabase,
+    deleteTaskFromDatebase,
+  };
 }

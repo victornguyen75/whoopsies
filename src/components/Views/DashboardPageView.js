@@ -6,7 +6,7 @@ import Notification from "../UI/Notification";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 import TaskModal from "../UI/TaskModal";
 
-export default function DashboardPageView({ viewModel }) {
+export default function DashboardPageView({ viewModel, deleteTask }) {
   const STATUSES = [
     "TO DO",
     "IN ANALYSIS",
@@ -27,6 +27,7 @@ export default function DashboardPageView({ viewModel }) {
         toggleModal={viewModel.toggleModal}
         fields={viewModel.fieldElements}
         values={viewModel.taskValues}
+        deleteTask={deleteTask}
       />
       <Grid
         container
@@ -73,6 +74,7 @@ DashboardPageView.propTypes = {
     }),
     toggleModal: PropTypes.func,
   }),
+  deleteTask: PropTypes.func,
 };
 
 DashboardPageView.defaultProps = {
@@ -85,4 +87,5 @@ DashboardPageView.defaultProps = {
     taskValues: {},
     toggleModal: () => {},
   },
+  deleteTask: () => {},
 };

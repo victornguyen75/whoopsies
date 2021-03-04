@@ -19,7 +19,7 @@ const displayFields = (field, values) => {
 };
 
 export default function TaskModal(props) {
-  const { open, toggleModal, fields, values } = props;
+  const { open, toggleModal, fields, values, deleteTask } = props;
   const { Modal, ModalButtons } = TaskModalStyles();
 
   return (
@@ -44,7 +44,13 @@ export default function TaskModal(props) {
             <Link to="/whoopsies/edit-task" id="edit">
               <EditIcon />
             </Link>
-            <DeleteIcon id="delete" />
+            <DeleteIcon
+              id="delete"
+              onClick={() => {
+                deleteTask(values.id);
+                toggleModal();
+              }}
+            />
           </Grid>
         </Grid>
 
@@ -80,6 +86,7 @@ TaskModal.propTypes = {
     release: PropTypes.string,
   }),
   toggleModal: PropTypes.func,
+  deleteTask: PropTypes.func,
 };
 
 TaskModal.defaultProps = {
@@ -87,4 +94,5 @@ TaskModal.defaultProps = {
   fields: [],
   values: {},
   toggleModal: () => {},
+  deleteTask: () => {},
 };

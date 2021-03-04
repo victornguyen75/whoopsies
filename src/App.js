@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import TaskModel from "./components/Models/TaskModel";
 import DashboardPageView from "./components/Views/DashboardPageView";
 import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewModel";
 import TaskCreationPageView from "./components/Views/TaskCreationPageView";
@@ -14,6 +15,7 @@ import AppStyles from "./AppStyles";
 
 function App() {
   const { theme, Content } = AppStyles();
+  const { deleteTaskFromDatebase } = TaskModel();
 
   // The value of render does not matter;
   // I just want the effect hook to rerender the tasks in the Dashboard page
@@ -27,6 +29,10 @@ function App() {
     taskCreationPageViewModel.handleSubmit(e).then(() => setRender(!render));
   };
 
+  const deleteTask = (id) => {
+    deleteTaskFromDatebase(id).then(() => setRender(!render));
+  };
+
   return (
     <Router basename="/">
       <ThemeContext.Provider value={theme}>
@@ -35,7 +41,10 @@ function App() {
         <Content>
           <Switch>
             <Route path="/whoopsies/dashboard">
-              <DashboardPageView viewModel={dashboardPageViewModel} />
+              <DashboardPageView
+                viewModel={dashboardPageViewModel}
+                deleteTask={deleteTask}
+              />
             </Route>
             <Route path="/whoopsies/create-task">
               <FormContext.Provider value={newTaskSubmission}>
