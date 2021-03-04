@@ -20,12 +20,6 @@ describe("DashboardPageView", () => {
         status: "IN ANALYSIS",
       },
     ],
-    notificationText: "Success!",
-  };
-
-  const viewModelTest2 = {
-    tasks: [],
-    notificationText: "Error!",
   };
 
   it("renders without crashing", () => {
@@ -40,21 +34,5 @@ describe("DashboardPageView", () => {
     const textOfDOM = getByTestId("dashboard-page-view").textContent;
     expect(textOfDOM).to.have.string("TO DO (1)");
     expect(textOfDOM).to.have.string("IN ANALYSIS (1)");
-  });
-
-  it("shows the success notification", () => {
-    const { getByTestId } = render(
-      <DashboardPageView viewModel={viewModelTest1} />
-    );
-    const textOfDOM = getByTestId("dashboard-page-view").textContent;
-    expect(textOfDOM).to.have.string("Success!");
-  });
-
-  it("shows the error notification", () => {
-    const { getByTestId } = render(
-      <DashboardPageView viewModel={viewModelTest2} />
-    );
-    const textOfDOM = getByTestId("dashboard-page-view").textContent;
-    expect(textOfDOM).to.have.string("Error!");
   });
 });
