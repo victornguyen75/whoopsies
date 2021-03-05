@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useNotifications from "./CustomHooks/useNotifications";
+import useNotifications from "../CustomHooks/useNotifications";
 
 export default function InDevelopmentPageViewModel() {
   const {

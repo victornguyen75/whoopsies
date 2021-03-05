@@ -1,5 +1,5 @@
-import useTaskCreation from "./CustomHooks/useTaskCreation";
-import useModal from "./CustomHooks/useModal";
+import useTaskCreation from "../CustomHooks/useTaskCreation";
+import useModal from "../CustomHooks/useModal";
 
 export default function DashboardPageViewModel() {
   const { fieldElements } = useTaskCreation();

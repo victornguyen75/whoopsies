@@ -9,7 +9,7 @@ AWS.config.update({
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
-const table = "Oopsies";
+const table = "Oopsies-test";
 const project = "Whoopsies!";
 
 function getLatestTaskId() {
