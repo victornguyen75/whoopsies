@@ -31,7 +31,7 @@ function App() {
     addTaskToDatabase,
     getTasksFromDatabase,
     updateTaskToDatabase,
-    deleteTaskFromDatebase,
+    deleteTaskFromDatabase,
   } = TaskModel();
 
   const {
@@ -92,7 +92,7 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    deleteTaskFromDatebase(id).then(() => setRender(!render));
+    deleteTaskFromDatabase(id).then(() => setRender(!render));
   };
 
   const editTask = async (e, fields) => {

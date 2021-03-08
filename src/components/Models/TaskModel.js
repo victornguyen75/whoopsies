@@ -137,7 +137,7 @@ function updateTaskToDatabase(updatedTask) {
   });
 }
 
-function deleteTaskFromDatebase(id) {
+function deleteTaskFromDatabase(id) {
   const params = {
     TableName: table,
     Key: {
@@ -161,6 +161,6 @@ export default function TaskModel() {
     addTaskToDatabase,
     getTasksFromDatabase,
     updateTaskToDatabase,
-    deleteTaskFromDatebase,
+    deleteTaskFromDatabase,
   };
 }
