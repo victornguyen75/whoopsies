@@ -60,7 +60,6 @@ function App() {
         const prioritizedTasks = [...retrievedTasks].sort(prioritize);
 
         setTasks(prioritizedTasks);
-        toggleNotification("Success: retrieved the tasks!");
       })
       .catch((err) => {
         toggleNotification(err.toString());
