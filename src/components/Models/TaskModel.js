@@ -9,7 +9,7 @@ AWS.config.update({
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
-const table = "Oopsies-test";
+const table = "Oopsies";
 const project = "Whoopsies!";
 
 function getLatestTaskId() {
@@ -86,6 +86,57 @@ function getTasksFromDatabase() {
   });
 }
 
+function updateTaskToDatabase(updatedTask) {
+  const {
+    id,
+    name,
+    description,
+    status,
+    priority,
+    sprint,
+    version,
+    release,
+  } = updatedTask;
+
+  const params = {
+    TableName: table,
+    Key: {
+      project,
+      id,
+    },
+    UpdateExpression:
+      "set #name = :name, #description = :description, #status = :status, #priority = :priority, #sprint = :sprint, #version = :version, #release = :release, #dateUpdated = :dateUpdated",
+    ExpressionAttributeNames: {
+      "#name": "name",
+      "#description": "description",
+      "#status": "status",
+      "#priority": "priority",
+      "#sprint": "sprint",
+      "#version": "version",
+      "#release": "release",
+      "#dateUpdated": "dateUpdated",
+    },
+    ExpressionAttributeValues: {
+      ":name": name,
+      ":description": description,
+      ":status": status,
+      ":priority": priority,
+      ":sprint": sprint,
+      ":version": version,
+      ":release": release,
+      ":dateUpdated": dayjs().format(),
+    },
+  };
+
+  return new Promise((resolve, reject) => {
+    docClient.update(params, (err) => {
+      return err
+        ? reject(new Error(`Error: unable to update item. ${err}`))
+        : resolve();
+    });
+  });
+}
+
 function deleteTaskFromDatebase(id) {
   const params = {
     TableName: table,
@@ -109,6 +160,7 @@ export default function TaskModel() {
     getLatestTaskId,
     addTaskToDatabase,
     getTasksFromDatabase,
+    updateTaskToDatabase,
     deleteTaskFromDatebase,
   };
 }
