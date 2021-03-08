@@ -1,8 +1,8 @@
-import useTaskCreation from "../CustomHooks/useTaskCreation";
-
-export default function TaskCreationPageViewModel() {
-  const { formLabel, fieldElements, setFieldElements } = useTaskCreation();
-
+export default function TaskCreationPageViewModel(
+  formLabel,
+  fieldElements,
+  setFieldElements
+) {
   const handleChange = (id, event) => {
     const newElements = [...fieldElements];
     const fieldIndexToUpdate = newElements.findIndex(
@@ -17,9 +17,25 @@ export default function TaskCreationPageViewModel() {
     setFieldElements(newElements);
   };
 
+  const hydrateTaskFromLocalStorage = () => {
+    const hydratedTask = [...fieldElements];
+    const storedTask = JSON.parse(localStorage.getItem("task"));
+
+    hydratedTask.forEach((field, index) => {
+      Object.assign(hydratedTask[index], {
+        fieldValue: storedTask[field.fieldId],
+      });
+    });
+
+    localStorage.clear();
+    // Warning: Cannot update a component (`App`) while rendering a different component (`TaskCreationPageView`)
+    setFieldElements(hydratedTask);
+  };
+
   return {
     formLabel,
     fieldElements,
     handleChange,
+    hydrateTaskFromLocalStorage,
   };
 }

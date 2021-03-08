@@ -25,11 +25,13 @@ function prioritize(item1, item2) {
 
 function App() {
   const { theme, Content } = AppStyles();
+
   const {
     getLatestTaskId,
     addTaskToDatabase,
-    deleteTaskFromDatebase,
     getTasksFromDatabase,
+    updateTaskToDatabase,
+    deleteTaskFromDatebase,
   } = TaskModel();
 
   const {
@@ -39,8 +41,11 @@ function App() {
   } = useNotifications();
 
   const {
-    tasks,
+    formLabel1,
+    formLabel2,
     resetFieldElements,
+    fieldElements,
+    tasks,
     setFieldElements,
     setTasks,
   } = useTaskCreation();
@@ -90,6 +95,24 @@ function App() {
     deleteTaskFromDatebase(id).then(() => setRender(!render));
   };
 
+  const editTask = async (e, fields) => {
+    e.preventDefault();
+
+    const updatedTask = {};
+    fields.forEach((field) => {
+      Object.assign(updatedTask, { [field.fieldId]: field.fieldValue });
+    });
+
+    try {
+      updateTaskToDatabase(updatedTask);
+      toggleNotification("Success: updated the item!");
+    } catch (err) {
+      toggleNotification(err.toString());
+    } finally {
+      setRender(!render);
+    }
+  };
+
   return (
     <Router basename="/" data-testid="app">
       <ThemeContext.Provider value={theme}>
@@ -107,7 +130,24 @@ function App() {
             </Route>
             <Route path="/whoopsies/create-task">
               <FormContext.Provider value={addTask}>
-                <TaskCreationPageView viewModel={TaskCreationPageViewModel()} />
+                <TaskCreationPageView
+                  viewModel={TaskCreationPageViewModel(
+                    formLabel1,
+                    fieldElements,
+                    setFieldElements
+                  )}
+                />
+              </FormContext.Provider>
+            </Route>
+            <Route path="/whoopsies/edit-task">
+              <FormContext.Provider value={editTask}>
+                <TaskCreationPageView
+                  viewModel={TaskCreationPageViewModel(
+                    formLabel2,
+                    fieldElements,
+                    setFieldElements
+                  )}
+                />
               </FormContext.Provider>
             </Route>
             <Route path="*">

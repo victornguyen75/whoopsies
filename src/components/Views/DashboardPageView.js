@@ -22,6 +22,7 @@ export default function DashboardPageView({ viewModel, tasks, deleteTask }) {
         toggleModal={viewModel.toggleModal}
         fields={viewModel.fieldElements}
         values={viewModel.taskValues}
+        handleEdit={viewModel.saveTaskToLocalStorage}
         deleteTask={deleteTask}
       />
       <Grid
@@ -65,6 +66,7 @@ DashboardPageView.propTypes = {
       release: PropTypes.string,
     }),
     toggleModal: PropTypes.func,
+    saveTaskToLocalStorage: PropTypes.func,
   }),
   tasks: PropTypes.arrayOf(PropTypes.object),
   deleteTask: PropTypes.func,
@@ -76,6 +78,7 @@ DashboardPageView.defaultProps = {
     openModal: false,
     taskValues: {},
     toggleModal: () => {},
+    saveTaskToLocalStorage: () => {},
   },
   tasks: [],
   deleteTask: () => {},
