@@ -28,7 +28,6 @@ export default function TaskCreationPageViewModel(
     });
 
     localStorage.clear();
-    // Warning: Cannot update a component (`App`) while rendering a different component (`TaskCreationPageView`)
     setFieldElements(hydratedTask);
   };
 
