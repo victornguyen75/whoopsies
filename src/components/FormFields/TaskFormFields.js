@@ -1,7 +1,20 @@
 export default function TaskFormFields() {
   return {
-    formLabel: "Task Creation Form",
+    formLabel1: "Task Creation",
+    formLabel2: "Task Update",
     fields: [
+      {
+        fieldId: "id",
+        fieldLabel: "Task ID",
+        fieldType: "",
+        fieldValue: null,
+      },
+      {
+        fieldId: "project",
+        fieldLabel: "Project Name",
+        fieldType: "",
+        fieldValue: null,
+      },
       {
         fieldId: "name",
         fieldLabel: "Task Name",
@@ -53,8 +66,9 @@ export default function TaskFormFields() {
         fieldValue: "",
       },
       {
-        fieldId: "create",
-        fieldLabel: "Create",
+        fieldId: "submit",
+        fieldLabel1: "Create",
+        fieldLabel2: "Update",
         fieldType: "button",
         fieldValue: null,
       },
