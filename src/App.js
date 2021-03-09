@@ -119,11 +119,15 @@ function App() {
     }
   };
 
+  const resetTaskForm = () => {
+    setFieldElements(resetFieldElements);
+  };
+
   return (
     <Router basename="/" data-testid="app">
       <ThemeContext.Provider value={theme}>
         <NavBar />
-        <Sidebar />
+        <Sidebar resetTaskForm={resetTaskForm} />
         <Content>
           <Notification show={showNotification} text={notificationText} />
           <Switch>
