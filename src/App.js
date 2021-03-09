@@ -90,8 +90,15 @@ function App() {
     }
   };
 
-  const deleteTask = (id) => {
-    deleteTaskFromDatabase(id).then(() => setRender(!render));
+  const deleteTask = async (id) => {
+    try {
+      deleteTaskFromDatabase(id);
+      toggleNotification("Success: deleted the item!");
+    } catch (err) {
+      toggleNotification(err.toString());
+    } finally {
+      setRender(!render);
+    }
   };
 
   const editTask = async (e, fields) => {
