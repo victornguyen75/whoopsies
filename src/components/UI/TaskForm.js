@@ -67,6 +67,7 @@ export default function TaskForm({ fields, handleChange }) {
             color="primary"
             type="submit"
             size="large"
+            disabled={fields[2].fieldValue === ""}
           >
             {onCreateTaskPage ? field.fieldLabel1 : field.fieldLabel2}
           </Button>
