@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import TaskList from "../UI/TaskList";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 import TaskModal from "../UI/TaskModal";
 
-export default function DashboardPageView({ viewModel, tasks, handleDelete }) {
+export default function DashboardPageView({
+  viewModel,
+  toggleNotification,
+  tasks,
+  handleDelete,
+}) {
   const STATUSES = [
     "TO DO",
     "IN ANALYSIS",
@@ -13,6 +18,10 @@ export default function DashboardPageView({ viewModel, tasks, handleDelete }) {
     "IN TESTING",
     "DONE",
   ];
+
+  useEffect(() => {
+    toggleNotification("Success: retrieved the tasks!");
+  }, [toggleNotification]);
 
   return (
     <div data-testid="dashboard-page-view">
@@ -69,6 +78,7 @@ DashboardPageView.propTypes = {
     saveTaskToLocalStorage: PropTypes.func,
   }),
   tasks: PropTypes.arrayOf(PropTypes.object),
+  toggleNotification: PropTypes.func,
   handleDelete: PropTypes.func,
 };
 
@@ -81,5 +91,6 @@ DashboardPageView.defaultProps = {
     saveTaskToLocalStorage: () => {},
   },
   tasks: [],
+  toggleNotification: () => {},
   handleDelete: () => {},
 };

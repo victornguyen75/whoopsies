@@ -64,6 +64,7 @@ function App() {
             <Route path="/whoopsies/dashboard">
               <DashboardPageView
                 viewModel={DashboardPageViewModel()}
+                toggleNotification={toggleNotification}
                 tasks={tasks}
                 handleDelete={deleteTask}
               />
