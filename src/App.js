@@ -6,7 +6,6 @@ import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewMod
 import TaskFormPageView from "./components/Views/TaskFormPageView";
 import TaskFormPageViewModel from "./components/ViewModels/TaskFormPageViewModel";
 import InDevelopmentPageView from "./components/Views/InDevelopmentPageView";
-import InDevelopmentPageViewModel from "./components/ViewModels/InDevelopmentPageViewModel";
 import useNotifications from "./components/CustomHooks/useNotifications";
 import useTaskCreation from "./components/CustomHooks/useTaskCreation";
 import FormContext from "./components/Providers/FormContext";
@@ -92,7 +91,7 @@ function App() {
               </FormContext.Provider>
             </Route>
             <Route path="*">
-              <InDevelopmentPageView viewModel={InDevelopmentPageViewModel()} />
+              <InDevelopmentPageView toggleNotification={toggleNotification} />
             </Route>
           </Switch>
         </Content>
