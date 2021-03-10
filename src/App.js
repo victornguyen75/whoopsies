@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import TaskModel from "./components/Models/TaskModel";
+import TaskViewModel from "./components/ViewModels/TaskViewModel";
 import DashboardPageView from "./components/Views/DashboardPageView";
 import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewModel";
 import TaskCreationPageView from "./components/Views/TaskCreationPageView";
@@ -16,23 +16,8 @@ import Sidebar from "./components/UI/Sidebar";
 import Notification from "./components/UI/Notification";
 import AppStyles from "./AppStyles";
 
-function prioritize(item1, item2) {
-  const priorities = ["Cosmetic", "Low", "Medium", "High", "Showstopper"];
-  return priorities.indexOf(item1.priority) > priorities.indexOf(item2.priority)
-    ? -1
-    : 1;
-}
-
 function App() {
   const { theme, Content } = AppStyles();
-
-  const {
-    getLatestTaskId,
-    addTaskToDatabase,
-    getTasksFromDatabase,
-    updateTaskToDatabase,
-    deleteTaskFromDatabase,
-  } = TaskModel();
 
   const {
     showNotification,
@@ -50,78 +35,23 @@ function App() {
     setTasks,
   } = useTaskCreation();
 
-  // The value of render does not matter;
-  // I just want the effect hook to rerender the tasks in the Dashboard page
-  const [render, setRender] = useState(true);
+  const {
+    render,
+    addTask,
+    getTask,
+    deleteTask,
+    editTask,
+    resetTaskForm,
+  } = TaskViewModel(
+    resetFieldElements,
+    setFieldElements,
+    setTasks,
+    toggleNotification
+  );
 
   useEffect(() => {
-    getTasksFromDatabase()
-      .then((retrievedTasks) => {
-        const prioritizedTasks = [...retrievedTasks].sort(prioritize);
-
-        setTasks(prioritizedTasks);
-      })
-      .catch((err) => {
-        toggleNotification(err.toString());
-      });
-  }, [render, getTasksFromDatabase, setTasks, toggleNotification]);
-
-  const addTask = async (e, fields) => {
-    e.preventDefault();
-
-    const newTask = {};
-    const willReset = fields[fields.length - 1].fieldValue;
-
-    fields.forEach((field) => {
-      Object.assign(newTask, { [field.fieldId]: field.fieldValue });
-    });
-
-    try {
-      const id = await getLatestTaskId();
-      await addTaskToDatabase(id, newTask);
-      toggleNotification("Success: added the item!");
-      if (willReset) {
-        setFieldElements(resetFieldElements);
-      }
-    } catch (err) {
-      toggleNotification(err.toString());
-    } finally {
-      setRender(!render);
-    }
-  };
-
-  const deleteTask = async (id) => {
-    try {
-      deleteTaskFromDatabase(id);
-      toggleNotification("Success: deleted the item!");
-    } catch (err) {
-      toggleNotification(err.toString());
-    } finally {
-      setRender(!render);
-    }
-  };
-
-  const editTask = async (e, fields) => {
-    e.preventDefault();
-
-    const updatedTask = {};
-    fields.forEach((field) => {
-      Object.assign(updatedTask, { [field.fieldId]: field.fieldValue });
-    });
-
-    try {
-      updateTaskToDatabase(updatedTask);
-      toggleNotification("Success: updated the item!");
-    } catch (err) {
-      toggleNotification(err.toString());
-    } finally {
-      setRender(!render);
-    }
-  };
-
-  const resetTaskForm = () => {
-    setFieldElements(resetFieldElements);
-  };
+    getTask();
+  }, [render, getTask]);
 
   return (
     <Router basename="/" data-testid="app">
