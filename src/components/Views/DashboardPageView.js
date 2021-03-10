@@ -5,7 +5,7 @@ import TaskList from "../UI/TaskList";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 import TaskModal from "../UI/TaskModal";
 
-export default function DashboardPageView({ viewModel, tasks, deleteTask }) {
+export default function DashboardPageView({ viewModel, tasks, handleDelete }) {
   const STATUSES = [
     "TO DO",
     "IN ANALYSIS",
@@ -23,7 +23,7 @@ export default function DashboardPageView({ viewModel, tasks, deleteTask }) {
         fields={viewModel.fieldElements}
         values={viewModel.taskValues}
         handleEdit={viewModel.saveTaskToLocalStorage}
-        deleteTask={deleteTask}
+        handleDelete={handleDelete}
       />
       <Grid
         container
@@ -69,7 +69,7 @@ DashboardPageView.propTypes = {
     saveTaskToLocalStorage: PropTypes.func,
   }),
   tasks: PropTypes.arrayOf(PropTypes.object),
-  deleteTask: PropTypes.func,
+  handleDelete: PropTypes.func,
 };
 
 DashboardPageView.defaultProps = {
@@ -81,5 +81,5 @@ DashboardPageView.defaultProps = {
     saveTaskToLocalStorage: () => {},
   },
   tasks: [],
-  deleteTask: () => {},
+  handleDelete: () => {},
 };

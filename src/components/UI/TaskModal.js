@@ -19,7 +19,7 @@ const displayFields = (field, values) => {
 };
 
 export default function TaskModal(props) {
-  const { open, toggleModal, fields, values, handleEdit, deleteTask } = props;
+  const { open, toggleModal, fields, values, handleEdit, handleDelete } = props;
   const { Modal, ModalButtons } = TaskModalStyles();
 
   return (
@@ -54,7 +54,7 @@ export default function TaskModal(props) {
             <DeleteIcon
               id="delete"
               onClick={(e) => {
-                deleteTask(values.id);
+                handleDelete(values.id);
                 toggleModal(e);
               }}
             />
@@ -94,7 +94,7 @@ TaskModal.propTypes = {
   }),
   toggleModal: PropTypes.func,
   handleEdit: PropTypes.func,
-  deleteTask: PropTypes.func,
+  handleDelete: PropTypes.func,
 };
 
 TaskModal.defaultProps = {
@@ -103,5 +103,5 @@ TaskModal.defaultProps = {
   values: {},
   toggleModal: () => {},
   handleEdit: () => {},
-  deleteTask: () => {},
+  handleDelete: () => {},
 };

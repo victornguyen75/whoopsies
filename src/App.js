@@ -65,7 +65,7 @@ function App() {
               <DashboardPageView
                 viewModel={DashboardPageViewModel()}
                 tasks={tasks}
-                deleteTask={deleteTask}
+                handleDelete={deleteTask}
               />
             </Route>
             <Route path="/whoopsies/create-task">
