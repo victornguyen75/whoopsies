@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import TaskForm from "../UI/TaskForm";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 
-export default function TaskCreationPageView({ viewModel }) {
+export default function TaskCreationPageView({ formLabel, viewModel }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function TaskCreationPageView({ viewModel }) {
   return (
     <div data-testid="task-creation-page-view">
       <WhoopsiesHeader />
-      <h2>{viewModel.formLabel}</h2>
+      <h2>{formLabel}</h2>
       <TaskForm
         fields={viewModel.fieldElements}
         handleChange={viewModel.handleChange}
@@ -27,8 +27,8 @@ export default function TaskCreationPageView({ viewModel }) {
 }
 
 TaskCreationPageView.propTypes = {
+  formLabel: PropTypes.string,
   viewModel: PropTypes.shape({
-    formLabel: PropTypes.string,
     fieldElements: PropTypes.arrayOf(PropTypes.object),
     handleChange: PropTypes.func,
     hydrateTaskFromLocalStorage: PropTypes.func,
@@ -36,8 +36,8 @@ TaskCreationPageView.propTypes = {
 };
 
 TaskCreationPageView.defaultProps = {
+  formLabel: "",
   viewModel: {
-    formLabel: "",
     fieldElements: [],
     handleChange: () => {},
     hydrateTaskFromLocalStorage: () => {},

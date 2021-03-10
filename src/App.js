@@ -71,8 +71,8 @@ function App() {
             <Route path="/whoopsies/create-task">
               <FormContext.Provider value={addTask}>
                 <TaskCreationPageView
+                  formLabel={formLabel1}
                   viewModel={TaskCreationPageViewModel(
-                    formLabel1,
                     fieldElements,
                     setFieldElements
                   )}
@@ -82,8 +82,8 @@ function App() {
             <Route path="/whoopsies/edit-task">
               <FormContext.Provider value={editTask}>
                 <TaskCreationPageView
+                  formLabel={formLabel2}
                   viewModel={TaskCreationPageViewModel(
-                    formLabel2,
                     fieldElements,
                     setFieldElements
                   )}

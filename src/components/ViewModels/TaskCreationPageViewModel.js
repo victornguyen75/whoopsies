@@ -1,5 +1,4 @@
 export default function TaskCreationPageViewModel(
-  formLabel,
   fieldElements,
   setFieldElements
 ) {
@@ -32,7 +31,6 @@ export default function TaskCreationPageViewModel(
   };
 
   return {
-    formLabel,
     fieldElements,
     handleChange,
     hydrateTaskFromLocalStorage,
