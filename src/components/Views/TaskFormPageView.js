@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import TaskForm from "../UI/TaskForm";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 
-export default function TaskCreationPageView({ formLabel, viewModel }) {
+export default function TaskFormPageView({ formLabel, viewModel }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function TaskCreationPageView({ formLabel, viewModel }) {
   );
 }
 
-TaskCreationPageView.propTypes = {
+TaskFormPageView.propTypes = {
   formLabel: PropTypes.string,
   viewModel: PropTypes.shape({
     fieldElements: PropTypes.arrayOf(PropTypes.object),
@@ -35,7 +35,7 @@ TaskCreationPageView.propTypes = {
   }),
 };
 
-TaskCreationPageView.defaultProps = {
+TaskFormPageView.defaultProps = {
   formLabel: "",
   viewModel: {
     fieldElements: [],

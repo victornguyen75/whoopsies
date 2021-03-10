@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TaskViewModel from "./components/ViewModels/TaskViewModel";
 import DashboardPageView from "./components/Views/DashboardPageView";
 import DashboardPageViewModel from "./components/ViewModels/DashboardPageViewModel";
-import TaskCreationPageView from "./components/Views/TaskCreationPageView";
-import TaskCreationPageViewModel from "./components/ViewModels/TaskCreationPageViewModel";
+import TaskFormPageView from "./components/Views/TaskFormPageView";
+import TaskFormPageViewModel from "./components/ViewModels/TaskFormPageViewModel";
 import InDevelopmentPageView from "./components/Views/InDevelopmentPageView";
 import InDevelopmentPageViewModel from "./components/ViewModels/InDevelopmentPageViewModel";
 import useNotifications from "./components/CustomHooks/useNotifications";
@@ -70,9 +70,9 @@ function App() {
             </Route>
             <Route path="/whoopsies/create-task">
               <FormContext.Provider value={addTask}>
-                <TaskCreationPageView
+                <TaskFormPageView
                   formLabel={formLabel1}
-                  viewModel={TaskCreationPageViewModel(
+                  viewModel={TaskFormPageViewModel(
                     fieldElements,
                     setFieldElements
                   )}
@@ -81,9 +81,9 @@ function App() {
             </Route>
             <Route path="/whoopsies/edit-task">
               <FormContext.Provider value={editTask}>
-                <TaskCreationPageView
+                <TaskFormPageView
                   formLabel={formLabel2}
-                  viewModel={TaskCreationPageViewModel(
+                  viewModel={TaskFormPageViewModel(
                     fieldElements,
                     setFieldElements
                   )}

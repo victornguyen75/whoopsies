@@ -1,7 +1,4 @@
-export default function TaskCreationPageViewModel(
-  fieldElements,
-  setFieldElements
-) {
+export default function TaskFormPageViewModel(fieldElements, setFieldElements) {
   const handleChange = (id, event) => {
     const newElements = [...fieldElements];
     const fieldIndexToUpdate = newElements.findIndex(

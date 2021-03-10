@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { expect } from "chai";
 import { render, cleanup } from "@testing-library/react";
-import TaskCreationPageView from "./TaskCreationPageView";
+import TaskFormPageView from "./TaskFormPageView";
 
 afterEach(cleanup);
 
-describe("TaskCreationPageView", () => {
+describe("TaskFormPageView", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<TaskCreationPageView />, div);
+    ReactDOM.render(<TaskFormPageView />, div);
   });
 
   it("shows the test form fields", () => {
@@ -26,7 +26,7 @@ describe("TaskCreationPageView", () => {
     };
 
     const { getByTestId } = render(
-      <TaskCreationPageView viewModel={viewModelTest1} />
+      <TaskFormPageView viewModel={viewModelTest1} />
     );
     const textOfDOM = getByTestId("task-creation-page-view").textContent;
 
