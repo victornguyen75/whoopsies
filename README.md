@@ -4,6 +4,26 @@ An Issue Tracker for your Oopsies! Here is a working [demo](http://victornguyen7
 
 This project is a work in progress. Here is a link to the [Software Requirement Specification (SRS)](https://docs.google.com/document/d/1FgaHyxg0d-MKl4OlfG0u36fmp6jM5nZxvI3ZeXUq4vs/edit?usp=sharing).
 
+## Create Tasks
+
+![Create Tasks on the Task Creation Form](/public/images/task-creation-form-1.jpg)
+![Successfully Added the Task!](/public/images/task-creation-form-2.jpg)
+
+## View Tasks
+
+![View Tasks on the Dashboard](/public/images/dashboard-1.jpg)
+
+## View Detailed Task Information before Editing or Deleting the Task
+
+![View Detailed Task Information on the Modal](/public/images/dashboard-2.jpg)
+
+## Edit Tasks
+
+![View All the Task Information on the Task Update Form](/public/images/task-update-form-1.jpg)
+![Make Your Changes](/public/images/task-update-form-2.jpg)
+![Successfuly Updated the Task!](/public/images/task-update-form-3.jpg)
+![See the Updated Dashboard](/public/images/dashboard-3.jpg)
+
 ## Set up
 
 1. Clone the project with `git clone https://github.com/victornguyen75/whoopsies.git` in the terminal
