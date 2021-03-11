@@ -11,18 +11,18 @@ This project is a work in progress. Here is a link to the [Software Requirement 
 
 ## View Tasks
 
-![View Tasks on the Dashboard](/public/images/dashboard-1.jpg)
+![View Tasks on the Dashboard](/public/images/dashboard-1.jpg "View Tasks on the Dashboard")
 
 ## View Detailed Task Information before Editing or Deleting the Task
 
-![View Detailed Task Information on the Modal](/public/images/dashboard-2.jpg)
+![View Detailed Task Information on the Modal](/public/images/dashboard-2.jpg "View Detailed Task Information on the Modal")
 
 ## Edit Tasks
 
-![View All the Task Information on the Task Update Form](/public/images/task-update-form-1.jpg)
-![Make Your Changes](/public/images/task-update-form-2.jpg)
-![Successfuly Updated the Task!](/public/images/task-update-form-3.jpg)
-![See the Updated Dashboard](/public/images/dashboard-3.jpg)
+![View All the Task Information on the Task Update Form](/public/images/task-update-form-1.jpg "View All the Task Information on the Task Update Form")
+![Make Your Changes](/public/images/task-update-form-2.jpg, "Make Your Changes")
+![Successfuly Updated the Task!](/public/images/task-update-form-3.jpg "Successfuly Updated the Task!")
+![See the Updated Dashboard](/public/images/dashboard-3.jpg "See the Updated Dashboard")
 
 ## Set up
 
