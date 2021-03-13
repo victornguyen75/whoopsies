@@ -5,6 +5,11 @@ const List = styled.div`
   background-color: lightgray;
   padding: 5px 5px 1px 5px;
   width: 245px;
+
+  svg {
+    float: right;
+    position: relative;
+  }
 `;
 
 export default function TaskListStyles() {

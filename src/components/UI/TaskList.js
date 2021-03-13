@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+// import Collapse from "@material-ui/core/Collapse";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+// import ExpandMore from "@material-ui/icons/ExpandMore";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import TaskCard from "./TaskCard";
 import TaskListStyles from "./TaskListStyles";
@@ -22,9 +25,16 @@ export default function TaskList({ header, tasks, toggleModal }) {
   const { List } = TaskListStyles();
   const fullHeader = `${header} (${tasks.length})`;
 
+  const showCollapseFeature = () => {
+    return tasks.length > 5 ? (
+      <ExpandLess onClick={() => console.log("hey")} />
+    ) : null;
+  };
+
   return (
     <List>
       <b>{fullHeader}</b>
+      {showCollapseFeature()}
       {tasks.map((task) => (
         <TaskCard
           key={task.id}
