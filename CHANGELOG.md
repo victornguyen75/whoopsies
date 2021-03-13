@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2021-03-13
+
+### Added
+
+- Task Modal to show task details
+- Task Update Form Page
+- Task update
+- Task deletion
+- Collapsible list feature
+- Images of the application to the README
+- Future Goals and Functionalities to the README
+- Bugs to the README
+
+### Refactored
+
+- Notifications component
+
+### Updated
+
+- README titles
+- Unit tests
+- File names and structure of the View Model and UI components
+
+### Fixed
+
+- Task ID Creation
+
 ## [1.2.0] - 2021-02-27
 
 ### Added

@@ -35,8 +35,25 @@ This project is a work in progress. Here is a link to the [Software Requirement 
 
 ### Local Hosting
 
-- Since this GitHub repository does not have my AWS keys, this frontend application can not connect to the AWS DynamoDB. Therefore, hosting the application locally will not allow the user to create and save tasks. However, the user can still look at the pages of this application.
+Since this GitHub repository does not have my AWS keys, this frontend application can not connect to the AWS DynamoDB. Therefore, hosting the application locally will not allow the user to create and save tasks. However, the user can still look at the pages of this application.
 
 ### GitHub Pages
 
-- The situation here is similar to the above. Another note is that the refreshing the application on the Dashboard page or the Task Creation Page will lead to a 404 file not found error.
+The situation here is similar to the above. Another note is that the refreshing the application on the Dashboard page or the Task Creation Page will lead to a 404 file not found error.
+
+## Future Goals and Functionalities
+
+This is list of ideas that I can continue improve on this application.
+
+1. Drag and drop functionality: the user can move task cards between the lists on the dashboard
+2. Date picker component: the release date field is manually entered, which can be tedious. This functionality would give a better user experience if this were a date picker component.
+3. Login feature: allow users to login and logout of this application
+4. Support for multiple projects: allow the user to view different projects
+5. Search for specific tasks: allow the user to quickly check if a task is currently on the dashboard. It might be a good idea to popup a modal to view the task's details.
+
+## Bugs
+
+These are bugs to fix when I have time.
+
+1. GitHub Pages demo: refreshing the page in the demo crashes the application. I may consider netlify or other hosting platforms to resolve this issue.
+2. GitHub Secrets don't work: the AWS keys in the GitHub Secrets are not transferring over to the React App custom environment variables. I'm not sure how to fix this yet.
