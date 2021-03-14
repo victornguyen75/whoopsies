@@ -1,13 +1,14 @@
 import { useState } from "react";
-import TaskFormFields from "../TaskFormFields";
+import TaskFormFields from "../FormFields/TaskFormFields";
 
 export default function useTaskCreation() {
-  const { formLabel } = TaskFormFields();
+  const { formLabel1, formLabel2 } = TaskFormFields();
   const [fieldElements, setFieldElements] = useState(TaskFormFields().fields);
   const [tasks, setTasks] = useState([]);
 
   return {
-    formLabel,
+    formLabel1,
+    formLabel2,
     resetFieldElements: TaskFormFields().fields,
     fieldElements,
     tasks,

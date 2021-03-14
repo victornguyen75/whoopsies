@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -8,8 +9,10 @@ import TaskFormStyles from "./TaskFormStyles";
 
 export default function TaskForm({ fields, handleChange }) {
   const { TextField, FormControlLabel } = TaskFormStyles();
+  const { pathname } = useLocation();
+  const onCreateTaskPage = pathname.includes("create-task");
 
-  const newTaskSubmission = useContext(FormContext);
+  const handleSubmit = useContext(FormContext);
 
   const displayFields = (field) => {
     switch (field.fieldType) {
@@ -64,12 +67,13 @@ export default function TaskForm({ fields, handleChange }) {
             color="primary"
             type="submit"
             size="large"
+            disabled={fields[2].fieldValue === ""}
           >
-            {field.fieldLabel}
+            {onCreateTaskPage ? field.fieldLabel1 : field.fieldLabel2}
           </Button>
         );
       case "checkbox":
-        return (
+        return onCreateTaskPage ? (
           <FormControlLabel
             key={field.fieldId}
             label={field.fieldLabel}
@@ -82,14 +86,14 @@ export default function TaskForm({ fields, handleChange }) {
               />
             }
           />
-        );
+        ) : null;
       default:
         return null;
     }
   };
 
   return (
-    <form onSubmit={(e) => newTaskSubmission(e)}>
+    <form onSubmit={(e) => handleSubmit(e, fields)}>
       {fields.map(displayFields)}
     </form>
   );

@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import SidebarStyles from "./SidebarStyles";
 
-export default function Sidebar() {
+export default function Sidebar({ resetTaskForm }) {
   const {
     Drawer,
     DashboardIcon,
@@ -22,7 +23,7 @@ export default function Sidebar() {
             Dashboard
           </ListItem>
         </Link>
-        <Link to="/whoopsies/create-task">
+        <Link to="/whoopsies/create-task" onClick={() => resetTaskForm()}>
           <ListItem button>
             <CreateTaskIcon />
             Create Task
@@ -44,3 +45,11 @@ export default function Sidebar() {
     </Drawer>
   );
 }
+
+Sidebar.propTypes = {
+  resetTaskForm: PropTypes.func,
+};
+
+Sidebar.defaultProps = {
+  resetTaskForm: () => {},
+};

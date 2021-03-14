@@ -18,10 +18,12 @@ function getPriorityColor(props) {
   }
 }
 
+// The adjust property of the Card component does not accept boolean attributes
+// Thus, strings have to be used and compared here
 const Card = styled(CardUnstyled)`
   display: grid;
   grid-template-columns: 85% 15%;
-  margin: 10px;
+  margin: ${({ adjust }) => (adjust === "true" ? "0px" : "10px")} 0px 10px 0px;
   padding: 10px;
   background-color: ${(props) => getPriorityColor(props)} !important;
 

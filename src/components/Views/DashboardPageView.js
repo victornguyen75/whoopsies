@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import TaskList from "../UI/TaskList";
-import Notification from "../UI/Notification";
 import WhoopsiesHeader from "../UI/WhoopsiesHeader";
 import TaskModal from "../UI/TaskModal";
 
-export default function DashboardPageView({ viewModel }) {
+export default function DashboardPageView({
+  viewModel,
+  toggleNotification,
+  tasks,
+  handleDelete,
+}) {
   const STATUSES = [
     "TO DO",
     "IN ANALYSIS",
@@ -15,18 +19,20 @@ export default function DashboardPageView({ viewModel }) {
     "DONE",
   ];
 
+  useEffect(() => {
+    toggleNotification("Success: retrieved the tasks!");
+  }, [toggleNotification]);
+
   return (
     <div data-testid="dashboard-page-view">
       <WhoopsiesHeader />
-      <Notification
-        show={viewModel.showNotification}
-        text={viewModel.notificationText}
-      />
       <TaskModal
         open={viewModel.openModal}
         toggleModal={viewModel.toggleModal}
         fields={viewModel.fieldElements}
         values={viewModel.taskValues}
+        handleEdit={viewModel.saveTaskToLocalStorage}
+        handleDelete={handleDelete}
       />
       <Grid
         container
@@ -36,7 +42,7 @@ export default function DashboardPageView({ viewModel }) {
         spacing={2}
       >
         {STATUSES.map((status) => {
-          const tasksOrganizedByStatus = viewModel.tasks.filter(
+          const tasksOrganizedByStatus = tasks.filter(
             (task) => status === task.status
           );
           return (
@@ -56,10 +62,7 @@ export default function DashboardPageView({ viewModel }) {
 
 DashboardPageView.propTypes = {
   viewModel: PropTypes.shape({
-    tasks: PropTypes.arrayOf(PropTypes.object),
     fieldElements: PropTypes.arrayOf(PropTypes.object),
-    showNotification: PropTypes.bool,
-    notificationText: PropTypes.string,
     openModal: PropTypes.bool,
     taskValues: PropTypes.shape({
       id: PropTypes.number,
@@ -72,17 +75,22 @@ DashboardPageView.propTypes = {
       release: PropTypes.string,
     }),
     toggleModal: PropTypes.func,
+    saveTaskToLocalStorage: PropTypes.func,
   }),
+  tasks: PropTypes.arrayOf(PropTypes.object),
+  toggleNotification: PropTypes.func,
+  handleDelete: PropTypes.func,
 };
 
 DashboardPageView.defaultProps = {
   viewModel: {
-    tasks: [],
     fieldElements: [],
-    showNotification: false,
-    notificationText: "",
     openModal: false,
     taskValues: {},
     toggleModal: () => {},
+    saveTaskToLocalStorage: () => {},
   },
+  tasks: [],
+  toggleNotification: () => {},
+  handleDelete: () => {},
 };

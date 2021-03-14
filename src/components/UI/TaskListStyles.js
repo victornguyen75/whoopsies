@@ -3,8 +3,13 @@ import styled from "styled-components";
 const List = styled.div`
   border-radius: 4px;
   background-color: lightgray;
-  padding: 5px 5px 1px 5px;
+  padding: 10px;
   width: 245px;
+
+  svg {
+    float: right;
+    position: relative;
+  }
 `;
 
 export default function TaskListStyles() {
