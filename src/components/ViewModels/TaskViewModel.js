@@ -55,20 +55,23 @@ export default function TaskViewModel(
   };
 
   const getTask = useCallback(() => {
-    getTasksFromDatabase()
+    const project = localStorage.getItem("project") || "Whoopsies!";
+
+    getTasksFromDatabase(project)
       .then((retrievedTasks) => {
         const prioritizedTasks = [...retrievedTasks].sort(prioritize);
 
         setTasks(prioritizedTasks);
+        localStorage.setItem("project", project);
       })
       .catch((err) => {
         toggleNotification(err.toString());
       });
   }, [getTasksFromDatabase, setTasks, toggleNotification]);
 
-  const deleteTask = async (id) => {
+  const deleteTask = async (id, project) => {
     try {
-      deleteTaskFromDatabase(id);
+      deleteTaskFromDatabase(id, project);
       toggleNotification("Success: deleted the item!");
     } catch (err) {
       toggleNotification(err.toString());

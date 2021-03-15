@@ -54,7 +54,7 @@ export default function TaskModal(props) {
             <DeleteIcon
               id="delete"
               onClick={(e) => {
-                handleDelete(values.id);
+                handleDelete(values.id, values.project);
                 toggleModal(e);
               }}
             />
@@ -89,6 +89,7 @@ TaskModal.propTypes = {
     status: PropTypes.string,
     priority: PropTypes.string,
     sprint: PropTypes.string,
+    project: PropTypes.string,
     version: PropTypes.string,
     release: PropTypes.string,
   }),
