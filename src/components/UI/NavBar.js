@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Assignment from "@material-ui/icons/Assignment";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import ThemeContext from "../Providers/ThemeContext";
 import NavBarStyles from "./NavBarStyles";
 
@@ -21,9 +22,20 @@ export default function NavBar() {
       </Button>
       <SearchBox>
         <SearchIcon />
-        <InputBase
-          placeholder="Search by project"
-          inputProps={{ "aria-label": "search" }}
+        <Autocomplete
+          id="project-autocomplete"
+          options={["Whoopsies!", "Victory Coin"]}
+          renderInput={(params) => (
+            <div ref={params.InputProps.ref}>
+              <InputBase
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...params.inputProps}
+                size="small"
+                variant="outlined"
+                placeholder="Search by project"
+              />
+            </div>
+          )}
         />
       </SearchBox>
     </AppBar>
