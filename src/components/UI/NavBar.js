@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import Assignment from "@material-ui/icons/Assignment";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import ThemeContext from "../Providers/ThemeContext";
 import NavBarStyles from "./NavBarStyles";
 
-export default function NavBar() {
+export default function NavBar({ projectOptions, handleSearch }) {
   const { AppBar, SearchBox, SearchIcon, InputBase, Button } = NavBarStyles();
   const theme = useContext(ThemeContext);
 
@@ -24,7 +25,8 @@ export default function NavBar() {
         <SearchIcon />
         <Autocomplete
           id="project-autocomplete"
-          options={["Whoopsies!", "Victory Coin"]}
+          options={projectOptions}
+          onClose={(e) => handleSearch(e)}
           renderInput={(params) => (
             <div ref={params.InputProps.ref}>
               <InputBase
@@ -41,3 +43,12 @@ export default function NavBar() {
     </AppBar>
   );
 }
+
+NavBar.propTypes = {
+  projectOptions: PropTypes.arrayOf(PropTypes.string),
+  handleSearch: PropTypes.func,
+};
+NavBar.defaultProps = {
+  projectOptions: [],
+  handleSearch: () => {},
+};

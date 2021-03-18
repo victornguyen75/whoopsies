@@ -98,5 +98,22 @@ export default function TaskViewModel(
     }
   };
 
-  return { addTask, getTask, deleteTask, editTask, resetTaskForm, render };
+  const switchProjects = (e) => {
+    localStorage.setItem("project", e.target.innerText);
+    window.location.reload();
+  };
+
+  // Will refactor into a service call later
+  const projectOptions = ["Whoopsies!", "Victory Coin"];
+
+  return {
+    render,
+    projectOptions,
+    addTask,
+    getTask,
+    deleteTask,
+    editTask,
+    resetTaskForm,
+    switchProjects,
+  };
 }
