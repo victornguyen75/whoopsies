@@ -4,16 +4,16 @@
     "main.js.map": "/whoopsies/static/js/main.df079aea.chunk.js.map",
     "runtime-main.js": "/whoopsies/static/js/runtime-main.b112e718.js",
     "runtime-main.js.map": "/whoopsies/static/js/runtime-main.b112e718.js.map",
-    "static/js/2.3952544e.chunk.js": "/whoopsies/static/js/2.3952544e.chunk.js",
-    "static/js/2.3952544e.chunk.js.map": "/whoopsies/static/js/2.3952544e.chunk.js.map",
+    "static/js/2.adcd2c94.chunk.js": "/whoopsies/static/js/2.adcd2c94.chunk.js",
+    "static/js/2.adcd2c94.chunk.js.map": "/whoopsies/static/js/2.adcd2c94.chunk.js.map",
     "static/js/3.2d7537b9.chunk.js": "/whoopsies/static/js/3.2d7537b9.chunk.js",
     "static/js/3.2d7537b9.chunk.js.map": "/whoopsies/static/js/3.2d7537b9.chunk.js.map",
     "index.html": "/whoopsies/index.html",
-    "static/js/2.3952544e.chunk.js.LICENSE.txt": "/whoopsies/static/js/2.3952544e.chunk.js.LICENSE.txt"
+    "static/js/2.adcd2c94.chunk.js.LICENSE.txt": "/whoopsies/static/js/2.adcd2c94.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b112e718.js",
-    "static/js/2.3952544e.chunk.js",
+    "static/js/2.adcd2c94.chunk.js",
     "static/js/main.df079aea.chunk.js"
   ]
 }
