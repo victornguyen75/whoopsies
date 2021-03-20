@@ -55,20 +55,23 @@ export default function TaskViewModel(
   };
 
   const getTask = useCallback(() => {
-    getTasksFromDatabase()
+    const project = localStorage.getItem("project") || "Whoopsies!";
+
+    getTasksFromDatabase(project)
       .then((retrievedTasks) => {
         const prioritizedTasks = [...retrievedTasks].sort(prioritize);
 
         setTasks(prioritizedTasks);
+        localStorage.setItem("project", project);
       })
       .catch((err) => {
         toggleNotification(err.toString());
       });
   }, [getTasksFromDatabase, setTasks, toggleNotification]);
 
-  const deleteTask = async (id) => {
+  const deleteTask = async (id, project) => {
     try {
-      deleteTaskFromDatabase(id);
+      deleteTaskFromDatabase(id, project);
       toggleNotification("Success: deleted the item!");
     } catch (err) {
       toggleNotification(err.toString());
@@ -95,5 +98,22 @@ export default function TaskViewModel(
     }
   };
 
-  return { addTask, getTask, deleteTask, editTask, resetTaskForm, render };
+  const switchProjects = (e) => {
+    localStorage.setItem("project", e.target.innerText);
+    window.location.reload();
+  };
+
+  // Will refactor into a service call later
+  const projectOptions = ["Whoopsies!", "Victory Coin"];
+
+  return {
+    render,
+    projectOptions,
+    addTask,
+    getTask,
+    deleteTask,
+    editTask,
+    resetTaskForm,
+    switchProjects,
+  };
 }

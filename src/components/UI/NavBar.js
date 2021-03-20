@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import Assignment from "@material-ui/icons/Assignment";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import ThemeContext from "../Providers/ThemeContext";
 import NavBarStyles from "./NavBarStyles";
 
-export default function NavBar() {
+export default function NavBar({ projectOptions, handleSearch }) {
   const { AppBar, SearchBox, SearchIcon, InputBase, Button } = NavBarStyles();
   const theme = useContext(ThemeContext);
 
@@ -21,11 +23,32 @@ export default function NavBar() {
       </Button>
       <SearchBox>
         <SearchIcon />
-        <InputBase
-          placeholder="Search by project"
-          inputProps={{ "aria-label": "search" }}
+        <Autocomplete
+          id="project-autocomplete"
+          options={projectOptions}
+          onClose={(e) => handleSearch(e)}
+          renderInput={(params) => (
+            <div ref={params.InputProps.ref}>
+              <InputBase
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                {...params.inputProps}
+                size="small"
+                variant="outlined"
+                placeholder="Search by project"
+              />
+            </div>
+          )}
         />
       </SearchBox>
     </AppBar>
   );
 }
+
+NavBar.propTypes = {
+  projectOptions: PropTypes.arrayOf(PropTypes.string),
+  handleSearch: PropTypes.func,
+};
+NavBar.defaultProps = {
+  projectOptions: [],
+  handleSearch: () => {},
+};

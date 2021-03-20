@@ -10,12 +10,6 @@ export default function TaskFormFields() {
         fieldValue: null,
       },
       {
-        fieldId: "project",
-        fieldLabel: "Project Name",
-        fieldType: "",
-        fieldValue: null,
-      },
-      {
         fieldId: "name",
         fieldLabel: "Task Name",
         fieldType: "text",
@@ -44,6 +38,12 @@ export default function TaskFormFields() {
       {
         fieldId: "sprint",
         fieldLabel: "Sprint",
+        fieldType: "text",
+        fieldValue: "",
+      },
+      {
+        fieldId: "project",
+        fieldLabel: "Project Name",
         fieldType: "text",
         fieldValue: "",
       },

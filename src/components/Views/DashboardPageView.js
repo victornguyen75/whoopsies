@@ -37,7 +37,7 @@ export default function DashboardPageView({
       <Grid
         container
         direction="row"
-        justify="center"
+        justify="space-around"
         alignItems="flex-start"
         spacing={2}
       >

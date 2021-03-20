@@ -17,13 +17,17 @@ export default function TaskFormPageViewModel(fieldElements, setFieldElements) {
     const hydratedTask = [...fieldElements];
     const storedTask = JSON.parse(localStorage.getItem("task"));
 
+    if (storedTask === null) {
+      return;
+    }
+
     hydratedTask.forEach((field, index) => {
       Object.assign(hydratedTask[index], {
         fieldValue: storedTask[field.fieldId],
       });
     });
 
-    localStorage.clear();
+    localStorage.removeItem("task");
     setFieldElements(hydratedTask);
   };
 

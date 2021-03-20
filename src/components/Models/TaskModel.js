@@ -10,7 +10,6 @@ AWS.config.update({
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 const table = "Oopsies";
-const project = "Whoopsies!";
 
 function getLatestTaskId() {
   const params = {
@@ -41,6 +40,7 @@ function addTaskToDatabase(id, newTask) {
     status,
     priority,
     sprint,
+    project,
     version,
     release,
   } = newTask;
@@ -72,9 +72,16 @@ function addTaskToDatabase(id, newTask) {
   });
 }
 
-function getTasksFromDatabase() {
+function getTasksFromDatabase(project) {
   const params = {
     TableName: table,
+    FilterExpression: "#project = :project",
+    ExpressionAttributeNames: {
+      "#project": "project",
+    },
+    ExpressionAttributeValues: {
+      ":project": project,
+    },
   };
 
   return new Promise((resolve, reject) => {
@@ -94,6 +101,7 @@ function updateTaskToDatabase(updatedTask) {
     status,
     priority,
     sprint,
+    project,
     version,
     release,
   } = updatedTask;
@@ -137,7 +145,7 @@ function updateTaskToDatabase(updatedTask) {
   });
 }
 
-function deleteTaskFromDatabase(id) {
+function deleteTaskFromDatabase(id, project) {
   const params = {
     TableName: table,
     Key: {

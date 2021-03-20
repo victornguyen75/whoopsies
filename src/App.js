@@ -36,11 +36,13 @@ function App() {
 
   const {
     render,
+    projectOptions,
     addTask,
     getTask,
     deleteTask,
     editTask,
     resetTaskForm,
+    switchProjects,
   } = TaskViewModel(
     resetFieldElements,
     setFieldElements,
@@ -55,7 +57,7 @@ function App() {
   return (
     <Router basename="/" data-testid="app">
       <ThemeContext.Provider value={theme}>
-        <NavBar />
+        <NavBar projectOptions={projectOptions} handleSearch={switchProjects} />
         <Sidebar resetTaskForm={resetTaskForm} />
         <Content>
           <Notification show={showNotification} text={notificationText} />
